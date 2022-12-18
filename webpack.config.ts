@@ -1,21 +1,15 @@
 import path from 'path';
-import HTMLWebpackPlugin from 'html-webpack-plugin';
-import webpack from 'webpack'
-import {buildLoaders} from "./config/build/buildLoaders";
-import {buildPlugins} from "./config/build/buildPlugins";
-import {buildResolvers} from "./config/build/buildResolvers";
-import {buildWebpackConfig} from "./config/build/buildWebpackConfig";
-import {IBuildEnv, IBuildPaths} from "./config/build/types/config";
-
-
+import webpack from 'webpack';
+import { buildWebpackConfig } from './config/build/buildWebpackConfig';
+import { IBuildEnv, IBuildPaths } from './config/build/types/config';
 
 export default (env: IBuildEnv) => {
     const paths: IBuildPaths = {
         entry: path.resolve(__dirname, 'src', 'index.tsx'),
         build: path.resolve(__dirname, 'build'),
         html: path.resolve(__dirname, 'public', 'index.html'),
-        src: path.resolve(__dirname, 'src')
-    }
+        src: path.resolve(__dirname, 'src'),
+    };
 
     const mode = env?.mode || 'development';
     const isDev = mode === 'development';
@@ -25,8 +19,8 @@ export default (env: IBuildEnv) => {
         mode,
         paths,
         isDev,
-        port: PORT
-    })
+        port: PORT,
+    });
 
-    return config
+    return config;
 };

@@ -1,5 +1,7 @@
-import React, {ErrorInfo, ReactNode} from "react";
+import React, {ErrorInfo, ReactNode, Suspense} from "react";
 import { withTranslation } from "react-i18next";
+import { PageError } from "widgets/PageError";
+import { PageLoader } from "widgets/PageLoader";
 
 
 interface IErrorBoundaryProps{
@@ -32,7 +34,8 @@ class ErrorBoundary extends React.Component<IErrorBoundaryProps, IErrorBoundaryS
 
       if (hasError) {
          // Можно отрендерить запасной UI произвольного вида
-         return <h1>Что-то пошло не так.</h1>;
+         // Suspense нужен чтобы подгружать переводы
+         return <Suspense fallback={""}><PageError/></Suspense>;
       }
 
       return children;

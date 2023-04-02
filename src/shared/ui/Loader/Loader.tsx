@@ -7,15 +7,14 @@ interface LoaderProps {
 }
 
 export const Loader: FC<LoaderProps> = (props) => {
-   const {className, children, ...otherProps} = props;
+    const { className, children, ...otherProps } = props;
 
-   return (
-       <div className={classNames("lds-ellipsis", {}, [className])} >
-         <div></div>
-         <div></div>
-         <div></div>
-         <div></div>
-      </div>
-   );
+    return (
+        <div className={classNames('lds-ellipsis', {}, [className])}>
+            <div />
+            <div />
+            <div />
+            <div />
+        </div>
+    );
 };
-

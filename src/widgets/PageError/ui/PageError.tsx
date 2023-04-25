@@ -13,14 +13,14 @@ export const PageError: FC<PageErrorProps> = (props) => {
 
     const { t } = useTranslation();
     const reloadPage = () => {
-       window.location.reload();
+        window.location.reload();
     };
 
     return (
         <div className={classNames(cls.PageError, {}, [className])}>
-            <p>{t('Произошла непредвиденная ошибка')}</p>
+            <p>{ t('Произошла непредвиденная ошибка') }</p>
             <Button onClick={reloadPage}>
-                {t('Обновить страницу')}
+                { t('Обновить страницу') }
             </Button>
         </div>
     );

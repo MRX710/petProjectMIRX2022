@@ -34,6 +34,8 @@ module.exports = {
         'no-unused-vars': 'warn',
         'react/require-default-props': 'off',
         'react/react-in-jsx-scope': 'off',
+        'react/jsx-one-expression-per-line': 'off',
+        'no-trailing-spaces': 'off',
         'react/jsx-props-no-spreading': 'warn',
         'react/self-closing-comp': 'off',
         'react/function-component-definition': 'off',
@@ -43,7 +45,7 @@ module.exports = {
         'no-underscore-dangle': 'off',
         'no-debugger': 'error',
         'i18next/no-literal-string': [
-            'error',
+            'warn',
             {
                 markupOnly: true,
                 ignoreAttribute: ['data-testid', 'to'],
@@ -53,6 +55,7 @@ module.exports = {
         'max-len': ['error', {'ignoreComments': true, code: 300}],
         'react-hooks/rules-of-hooks': 'error',
         'react-hooks/exhaustive-deps': 'error',
+        'no-param-reassign': 'off',
     },
     globals: {
         __IS_DEV__: true,

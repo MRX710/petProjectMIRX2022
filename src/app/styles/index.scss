@@ -3,22 +3,21 @@
 @import "themes/normal";
 @import "themes/dark";
 
-
 body {
-  font: var(--font-m);
+    font: var(--font-m);
 }
 
 .app {
-  color: var(--primary-color);
-  background: var(--bg-color);
-  min-height: 100vh;
+    color: var(--primary-color);
+    background: var(--bg-color);
+    min-height: 100vh;
 }
 
 .content-page {
-  display: flex;
+    display: flex;
 }
 
 .page-wrapper {
-  flex-grow: 1;
-  padding: 20px;
+    flex-grow: 1;
+    padding: 20px;
 }

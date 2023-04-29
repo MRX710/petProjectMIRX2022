@@ -5,22 +5,27 @@ interface UseThemeResult {
    toggleTheme: () => void;
    theme: Theme;
    setDefaultTheme: () => void
+   appendBodyClassnameTheme: (theme: Theme) => void
 }
 
 export function useTheme(): UseThemeResult {
     const { theme, setTheme } = useContext(ThemeContext);
 
+    const appendBodyClassnameTheme = (theme: Theme) => {
+        document.body.className = theme;
+    };
+
     const setDefaultTheme = () => {
         const defaultTheme = Theme.LIGHT;
         setTheme?.(defaultTheme);
-        document.body.className = defaultTheme;
+        appendBodyClassnameTheme(defaultTheme);
         localStorage.setItem(LOCAL_STORAGE_THEME_KEY, defaultTheme);
     };
 
     const toggleTheme = () => {
         const newTheme = theme === Theme.DARK ? Theme.LIGHT : Theme.DARK;
         setTheme?.(newTheme);
-        document.body.className = newTheme;
+        appendBodyClassnameTheme(newTheme);
         localStorage.setItem(LOCAL_STORAGE_THEME_KEY, newTheme);
     };
 
@@ -28,5 +33,6 @@ export function useTheme(): UseThemeResult {
         theme,
         toggleTheme,
         setDefaultTheme,
+        appendBodyClassnameTheme,
     };
 }

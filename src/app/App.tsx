@@ -4,11 +4,9 @@ import { AppRouter } from 'app/providers/router';
 import { Navbar } from 'widgets/Navbar';
 import { Sidebar } from 'widgets/Sidebar';
 
-
 function App() {
     /* eslint-disable no-debugger */
     debugger;
-
     /* eslint-disable no-debugger */
 
     return (

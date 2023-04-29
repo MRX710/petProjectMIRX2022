@@ -1,6 +1,7 @@
 import React, {
-    FC, ReactNode, useMemo, useState,
+    FC, ReactNode, useEffect, useMemo, useState,
 } from 'react';
+import { useTheme } from 'app/providers/ThemeProvider';
 import { LOCAL_STORAGE_THEME_KEY, Theme, ThemeContext } from '../lib/ThemeContext';
 
 const defaultTheme = localStorage.getItem(LOCAL_STORAGE_THEME_KEY) as Theme || Theme.LIGHT;
@@ -21,6 +22,17 @@ const ThemeProvider: FC<IThemeProviderProps> = (props) => {
         theme,
         setTheme,
     }), [theme]);
+
+    const { setDefaultTheme, appendBodyClassnameTheme } = useTheme();
+    useEffect(() => {
+        const savedTheme = localStorage.getItem(LOCAL_STORAGE_THEME_KEY);
+        if (!!savedTheme && (savedTheme === Theme.LIGHT || savedTheme === Theme.DARK)) {
+            appendBodyClassnameTheme(savedTheme);
+        }
+        else {
+            setDefaultTheme();
+        }
+    }, [setDefaultTheme, appendBodyClassnameTheme]);
 
     return (
         <ThemeContext.Provider value={defaultProps}>

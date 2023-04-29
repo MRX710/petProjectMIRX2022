@@ -1,4 +1,3 @@
-import { useTheme } from 'app/providers/ThemeProvider';
 import React, {
     FC, ReactNode, useCallback, useEffect, useRef, useState,
 } from 'react';
@@ -20,7 +19,7 @@ export const Modal: FC<ModalProps> = (props) => {
         className,
         isOpen,
         onClose,
-        children, ...otherProps
+        children,
     } = props;
 
     const [isClosing, setIsClosing] = useState(false);
@@ -57,8 +56,6 @@ export const Modal: FC<ModalProps> = (props) => {
     const onContentClick = (e: React.MouseEvent) => {
         e.stopPropagation();
     };
-
-    const { theme } = useTheme();
 
     const mods: Record<string, boolean> = {
         [cls.opened]: isOpen,

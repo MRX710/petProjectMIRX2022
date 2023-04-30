@@ -19,4 +19,5 @@ export const parameters = {
 addDecorator(StyleDecorator);
 addDecorator(ThemeDecorator(Theme.LIGHT));
 addDecorator(RouterDecorator);
-addDecorator(StoreDecorator);
+// при добавлении сюда декоратора снизу в сторибуках компоненты не отображаются
+// addDecorator(StoreDecorator);

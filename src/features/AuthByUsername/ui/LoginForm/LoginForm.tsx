@@ -45,7 +45,7 @@ export const LoginForm = memo((props: LoginFormProps) => {
             {
                 error
                     ? (
-                        <Text text={error} theme={TextTheme.ERROR} />
+                        <Text text={t('Вы ввели неверный логин или пароль')} theme={TextTheme.ERROR} />
                     ) : null
             }
             <Input

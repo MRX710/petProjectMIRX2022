@@ -9,5 +9,8 @@
   "Обновить страницу": "Refresh page",
   "Выбросить ошибку": "Throw error",
   "Короткий язык": "En",
-  "Войти": "Login"
+  "Войти": "Login",
+  "Выйти": "Logout",
+  "Форма авторизации": "Auth form",
+  "Вы ввели неверный логин или пароль": "You have entered an incorrect username or password"
 }

@@ -35,6 +35,7 @@ module.exports = {
         'react/require-default-props': 'off',
         'react/react-in-jsx-scope': 'off',
         'react/jsx-one-expression-per-line': 'off',
+        'react/jsx-no-useless-fragment': 'warn',
         'no-trailing-spaces': 'off',
         'react/jsx-props-no-spreading': 'warn',
         'react/self-closing-comp': 'off',

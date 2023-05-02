@@ -5,8 +5,10 @@ import { StateScheme } from './StateScheme';
 import { createReducerManager } from './reducerManager';
 
 
-export function createReduxStore(initialState?: StateScheme) {
+export function createReduxStore(initialState?: StateScheme, asyncReducers?: ReducersMapObject<StateScheme>) {
     const rootReducers: ReducersMapObject<StateScheme> = {
+        // нужны asyncReducers в случае, когда storybook грузится
+        ...asyncReducers,
         counter: counterReducer,
         user: userReducer,
     };

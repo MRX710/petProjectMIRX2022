@@ -5,6 +5,7 @@ import {
     AnyAction, EnhancedStore, Reducer, ReducersMapObject,
 } from '@reduxjs/toolkit';
 import { CombinedState } from 'redux';
+import { IProfileScheme } from 'entities/Profile';
 
 export interface StateScheme {
    counter: CounterScheme,
@@ -12,6 +13,7 @@ export interface StateScheme {
 
    // Async reducers
    loginForm?: ILoginScheme,
+   profile?: IProfileScheme,
 }
 
 export type StateSchemeKey = keyof StateScheme;

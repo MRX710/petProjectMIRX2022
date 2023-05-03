@@ -1,4 +1,4 @@
-import { createReduxStore } from './config/store';
+import { AppDispatch, createReduxStore } from './config/store';
 import { StoreProvider } from './ui/StoreProvider';
 import type { IReduxStoreWithManager, StateScheme } from './config/StateScheme';
 
@@ -7,4 +7,5 @@ export {
     createReduxStore,
     StateScheme,
     IReduxStoreWithManager,
+    AppDispatch,
 };

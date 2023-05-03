@@ -1,0 +1,21 @@
+.SidebarItem {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.icon {
+    fill: var(--inverted-primary-color);
+}
+
+.link {
+    margin-left: 10px;
+}
+
+.collapsed {
+    .link {
+        opacity: 0;
+        transition: 0.2s opacity;
+        width: 0;
+    }
+}

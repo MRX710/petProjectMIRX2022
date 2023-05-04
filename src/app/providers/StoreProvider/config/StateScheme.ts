@@ -4,8 +4,11 @@ import { ILoginScheme } from 'features/AuthByUsername';
 import {
     AnyAction, EnhancedStore, Reducer, ReducersMapObject,
 } from '@reduxjs/toolkit';
-import { CombinedState } from 'redux';
+import { CombinedState, Dispatch } from 'redux';
 import { IProfileScheme } from 'entities/Profile';
+import { AxiosInstance } from 'axios';
+import { To } from 'react-router-dom';
+import { NavigateOptions } from 'react-router';
 
 export interface StateScheme {
    counter: CounterScheme,
@@ -16,6 +19,7 @@ export interface StateScheme {
    profile?: IProfileScheme,
 }
 
+// типы для работы с редьюсерами
 export type StateSchemeKey = keyof StateScheme;
 
 export interface IReducerManager {
@@ -27,5 +31,16 @@ export interface IReducerManager {
 
 export interface IReduxStoreWithManager extends EnhancedStore<StateScheme> {
    reducerManager: IReducerManager
+}
 
+
+// типы для работы с thunk, запросами
+export interface IThunkExtraArg {
+   api: AxiosInstance
+   navigate?: (to: To, options?: NavigateOptions) => void
+}
+
+export interface IThunkConfig<T> {
+   rejectValue: T;
+   extra: IThunkExtraArg
 }

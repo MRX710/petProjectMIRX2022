@@ -10,10 +10,7 @@ export default ({ config }: { config: webpack.Configuration }) => {
         entry: '',
         src: path.resolve(__dirname, '..', '..', 'src'),
     };
-    // config.resolve.modules.push(paths.src);
     config.resolve.modules = [paths.src, 'node_modules'];
-    // config.resolve?.modules?.push(path.relative(__dirname, '../../src'), 'node_modules');
-    // config.resolve.modules.unshift(paths.src);
 
     config.resolve.extensions.push('.ts', '.tsx');
 
@@ -33,7 +30,8 @@ export default ({ config }: { config: webpack.Configuration }) => {
     config.module.rules.push(buildCssLoader(true));
 
     config.plugins.push(new DefinePlugin({
-        __IS_DEV__: true,
+        __IS_DEV__: JSON.stringify(true),
+        __API__: JSON.stringify(''),
     }));
 
 

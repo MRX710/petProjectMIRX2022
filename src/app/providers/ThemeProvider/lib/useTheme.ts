@@ -9,7 +9,10 @@ interface UseThemeResult {
 }
 
 export function useTheme(): UseThemeResult {
-    const { theme, setTheme } = useContext(ThemeContext);
+    const {
+        theme,
+        setTheme,
+    } = useContext(ThemeContext);
 
     const appendBodyClassnameTheme = (theme: Theme) => {
         document.body.className = theme;
@@ -30,7 +33,7 @@ export function useTheme(): UseThemeResult {
     };
 
     return {
-        theme,
+        theme: theme || Theme.LIGHT,
         toggleTheme,
         setDefaultTheme,
         appendBodyClassnameTheme,

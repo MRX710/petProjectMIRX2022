@@ -1,7 +1,7 @@
 import React, {
     FC, ReactNode, useCallback, useEffect, useRef, useState,
 } from 'react';
-import { classNames } from 'shared/lib/classNames/classNames';
+import { classNames, Mods } from 'shared/lib/classNames/classNames';
 import { Portal } from 'shared/ui/Portal/Portal';
 import cls from './Modal.module.scss';
 
@@ -27,7 +27,7 @@ export const Modal: FC<ModalProps> = (props) => {
 
     const [isClosing, setIsClosing] = useState(false);
     const [isMounted, setIsMounted] = useState(false);
-    const timeRef = useRef<ReturnType<typeof setTimeout>>();
+    const timeRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
     useEffect(() => {
         if (isOpen) {
@@ -38,10 +38,10 @@ export const Modal: FC<ModalProps> = (props) => {
     const closeHandler = useCallback(() => {
         if (onClose) {
             setIsClosing(true);
-            timeRef.current = setTimeout(() => {
-                onClose();
-                setIsClosing(false);
-            }, ANIMATION_DELAY);
+         timeRef!.current = setTimeout(() => {
+             onClose();
+             setIsClosing(false);
+         }, ANIMATION_DELAY);
         }
     }, [onClose]);
 
@@ -57,14 +57,14 @@ export const Modal: FC<ModalProps> = (props) => {
 
     useEffect(() => {
         if (isOpen) {
-            timeRef.current = setTimeout(() => {
-                setIsOpening(true);
-            }, 0);
-            window.addEventListener('keydown', onKeyDown);
+         timeRef!.current = setTimeout(() => {
+             setIsOpening(true);
+         }, 0);
+         window.addEventListener('keydown', onKeyDown);
         }
         return () => {
             setIsOpening(false);
-            clearTimeout(timeRef.current);
+            if (timeRef!.current) clearTimeout(timeRef!.current);
             window.removeEventListener('keydown', onKeyDown);
         };
     }, [isOpen, onKeyDown]);
@@ -74,7 +74,7 @@ export const Modal: FC<ModalProps> = (props) => {
         e.stopPropagation();
     };
 
-    const mods: Record<string, boolean> = {
+    const mods: Mods = {
         [cls.opened]: isOpening,
         [cls.isClosing]: isClosing,
     };

@@ -24,7 +24,8 @@ export type StateSchemeKey = keyof StateScheme;
 
 export interface IReducerManager {
    getReducerMap: () => ReducersMapObject<StateScheme>
-   reduce: (state: StateScheme, action: AnyAction) => CombinedState<StateScheme>
+   // reduce: (state: StateScheme, action: AnyAction) => CombinedState<StateScheme>
+   reduce: Reducer<CombinedState<StateScheme>>
    add: (key: StateSchemeKey, reducer: Reducer) => void
    remove: (key: StateSchemeKey) => void
 }

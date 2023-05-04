@@ -1,26 +1,37 @@
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/lib/classNames/classNames';
-import { useSelector } from 'react-redux';
-import { getProfileError, getProfileLoading } from 'entities/Profile/model/selectors/getProfile';
 import { Text } from 'shared/ui/Text/Text';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { Input } from 'shared/ui/Input/Input';
+import { IProfile } from 'entities/Profile';
+import { Loader } from 'shared/ui/Loader/Loader';
 import cls from './ProfileCard.module.scss';
-
-import { getProfileData } from '../../model/selectors/getProfileData';
 
 interface IProfileCardProps {
    className?: string
+   data?: IProfile
+   error?: string
+   isLoading?: boolean
 }
 
 export const ProfileCard: FC<IProfileCardProps> = (props) => {
-    const { className } = props;
+    const {
+        className,
+        data,
+        isLoading,
+        error,
+    } = props;
 
     const { t } = useTranslation('profile');
-    const data = useSelector(getProfileData);
-    const isLoading = useSelector(getProfileLoading);
-    const error = useSelector(getProfileError);
+
+    if (isLoading) {
+        return (
+            <div className={classNames(cls.ProfileCard, { [cls.loading]: true }, [className])}>
+                <Loader />
+            </div>
+        );
+    }
 
     return (
         <div className={classNames(cls.ProfileCard, {}, [className])}>

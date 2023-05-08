@@ -8,9 +8,8 @@ import { userActions } from 'entities/User';
 import { useNavigate } from 'react-router-dom';
 
 function App() {
-    /* eslint-disable no-debugger */
+    /* eslint-disable-next-line no-debugger */
     debugger;
-    /* eslint-disable no-debugger */
     const dispatch = useDispatch();
     const navigate = useNavigate();
     useEffect(() => {

@@ -1,0 +1,12 @@
+.ProfilePageHeader {
+    display: flex;
+    margin-bottom: 20px;
+
+    &__editBtn {
+        margin-left: auto;
+    }
+
+    &__save {
+        margin-left: 15px;
+    }
+}

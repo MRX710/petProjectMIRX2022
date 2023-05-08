@@ -13,7 +13,13 @@
   "Короткий язык": "En",
   "Войти": "Login",
   "Выйти": "Logout",
+  "Профиль": "Profile",
   "Форма авторизации": "Auth form",
+  "Введите имя пользователя": "Enter username",
+  "Введите пароль": "Enter password",
   "Вы ввели неверный логин или пароль": "You have entered an incorrect username or password",
-  "Профиль": "Profile"
+  "Попробуйте обновить страницу": "Try to refresh page",
+  "Редактировать": "Edit",
+  "Отменить": "Cancel",
+  "Сохранить": "Save"
 }

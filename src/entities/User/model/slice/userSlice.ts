@@ -3,10 +3,7 @@ import { USER_LOCALSTORAGE_KEY } from 'shared/const/localStorage';
 import { IUser, IUserScheme } from '../types/user';
 
 const initialState: IUserScheme = {
-    authData: {
-        id: '1',
-        username: 'admin',
-    },
+    authData: undefined,
 };
 
 export const userSlice = createSlice({

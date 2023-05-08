@@ -1,4 +1,8 @@
 export {
+    updateProfileData,
+} from "entities/Profile/model/service/updateProfileData/updateProfileData";
+
+export {
     ProfileCard,
 } from './ui/ProfileCard/ProfileCard';
 
@@ -34,3 +38,19 @@ export {
     getProfileLastname,
     getProfileUsername,
 } from './model/selectors/getProfileData';
+
+export {
+    getProfileForm,
+    getProfileFormAge,
+    getProfileFormAvatar,
+    getProfileFormCity,
+    getProfileFormCountry,
+    getProfileFormCurrency,
+    getProfileFormFirstName,
+    getProfileFormLastname,
+    getProfileFormUsername,
+} from './model/selectors/getProfileForm';
+
+export {
+    getProfileReadonly,
+} from './model/selectors/getProfileReadonly/getProfileReadonly';

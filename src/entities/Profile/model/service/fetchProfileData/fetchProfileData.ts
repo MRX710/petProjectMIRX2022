@@ -20,6 +20,10 @@ export const fetchProfileData = createAsyncThunk<IProfile, void, IThunkConfig<st
                 '/profile',
             );
 
+            if (!response?.data) {
+                throw new Error();
+            }
+
             return response.data;
         }
         catch (err) {

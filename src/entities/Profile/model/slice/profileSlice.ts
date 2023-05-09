@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { fetchProfileData } from 'entities/Profile';
+import { fetchProfileData, ValidateProfileError } from 'entities/Profile';
 import { updateProfileData } from "entities/Profile/model/service/updateProfileData/updateProfileData";
+import { checkArrayToMap } from "shared/lib/checkout/checkout";
 import { IProfile, IProfileScheme } from '../types/profileTypes';
 
 const initialState: IProfileScheme = {
@@ -20,12 +21,33 @@ export const profileSlice = createSlice({
         cancelEdit: (state) => {
             state.readonly = true;
             state.form = state?.data;
+            state.validateErrors = undefined;
         },
         updateProfile: (state, action: PayloadAction<IProfile>) => {
             state.form = {
                 ...(state?.form || state?.data || {}),
                 ...action.payload,
             };
+        },
+        addError: (state, action: PayloadAction<ValidateProfileError>) => {
+            if (state?.validateErrors && checkArrayToMap(state?.validateErrors) && state?.validateErrors?.every((item: string) => item !== action?.payload)) {
+                state.validateErrors = [
+                    // eslint-disable-next-line no-unsafe-optional-chaining
+                    ...state?.validateErrors,
+                    action?.payload,
+                ];
+            }
+            else if (state?.validateErrors && checkArrayToMap(state?.validateErrors)) {
+            // pass
+            }
+            else {
+                state.validateErrors = [action?.payload];
+            }
+        },
+        removeErrors: (state, action: PayloadAction<ValidateProfileError>) => {
+            if (state?.validateErrors && checkArrayToMap(state?.validateErrors)) {
+                state.validateErrors = state?.validateErrors?.filter((item: string) => item !== action?.payload);
+            }
         },
     },
     extraReducers: (builder) => {
@@ -45,7 +67,7 @@ export const profileSlice = createSlice({
             })
 
             .addCase(updateProfileData.pending, (state, action) => {
-                state.error = undefined;
+                state.validateErrors = undefined;
                 state.isLoading = true;
             })
             .addCase(updateProfileData.fulfilled, (state, action: PayloadAction<IProfile>) => {
@@ -53,10 +75,11 @@ export const profileSlice = createSlice({
                 state.data = action?.payload;
                 state.form = action?.payload;
                 state.readonly = true;
+                state.validateErrors = undefined;
             })
             .addCase(updateProfileData.rejected, (state, action) => {
                 state.isLoading = false;
-                state.error = action.payload;
+                state.validateErrors = action.payload;
             });
     },
 });

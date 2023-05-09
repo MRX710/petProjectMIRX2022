@@ -5,6 +5,8 @@ import { Theme } from 'app/providers/ThemeProvider';
 import { StoreDecorator } from 'shared/config/storybook/StoreDecorator/StoreDecorator';
 import { IProfileScheme } from 'entities/Profile';
 import { StateScheme } from 'app/providers/StoreProvider';
+import { Currency } from "entities/Currency";
+import { Country } from "entities/Country";
 import ProfilePage from './ProfilePage';
 
 export default {
@@ -16,11 +18,18 @@ export default {
 } as ComponentMeta<typeof ProfilePage>;
 
 const Template: ComponentStory<typeof ProfilePage> = () => <ProfilePage />;
-const initialState: IProfileScheme = {
-    readonly: true,
-    isLoading: false,
-    error: undefined,
-    data: undefined,
+const initialState: DeepPartial<StateScheme> = {
+    profile: {
+        form: {
+            firstname: "MIRX",
+            lastname: "MIRX001",
+            age: 21,
+            currency: Currency.RUB,
+            country: Country.Russia,
+            city: "Krasnodar",
+            username: "admin",
+        },
+    },
 };
 
 export const Normal = Template.bind({});

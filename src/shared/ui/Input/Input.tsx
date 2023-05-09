@@ -79,7 +79,7 @@ export const Input = memo((props: InputProps) => {
                 <input
                     ref={ref}
                     type={type}
-                    value={String(value) || ''}
+                    value={value ? String(value) : ''}
                     onChange={onChangeHandler}
                     className={classNames(cls.input, inputMods, [])}
                     onFocus={onFocus}

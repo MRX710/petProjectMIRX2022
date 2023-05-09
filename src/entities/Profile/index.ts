@@ -1,6 +1,10 @@
 export {
+    getProfileValidateErrors,
+} from "./model/selectors/getProfileValidateErrors/getProfileValidateErrors";
+
+export {
     updateProfileData,
-} from "entities/Profile/model/service/updateProfileData/updateProfileData";
+} from "./model/service/updateProfileData/updateProfileData";
 
 export {
     ProfileCard,
@@ -13,6 +17,7 @@ export {
 export {
     IProfile,
     IProfileScheme,
+    ValidateProfileError,
 } from './model/types/profileTypes';
 
 export {
@@ -25,7 +30,7 @@ export {
     getProfileLoading,
     getProfileError,
     getProfileReadOnly,
-} from './model/selectors/getProfile';
+} from './model/selectors/getProfile/getProfile';
 
 export {
     getProfileData,
@@ -37,7 +42,7 @@ export {
     getProfileFirstName,
     getProfileLastname,
     getProfileUsername,
-} from './model/selectors/getProfileData';
+} from './model/selectors/getProfileData/getProfileData';
 
 export {
     getProfileForm,
@@ -49,7 +54,7 @@ export {
     getProfileFormFirstName,
     getProfileFormLastname,
     getProfileFormUsername,
-} from './model/selectors/getProfileForm';
+} from './model/selectors/getProfileForm/getProfileForm';
 
 export {
     getProfileReadonly,

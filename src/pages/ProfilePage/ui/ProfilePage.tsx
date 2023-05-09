@@ -3,18 +3,19 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import { DynamicModuleLoader, ReducersList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import {
     fetchProfileData,
-    getProfileData,
     getProfileError, getProfileForm,
-    getProfileLoading, getProfileReadonly, profileActions,
+    getProfileLoading, getProfileReadonly, getProfileValidateErrors, profileActions,
     ProfileCard,
-    profileReducer,
+    profileReducer, ValidateProfileError,
 } from 'entities/Profile';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useSelector } from 'react-redux';
 import { regOnlyNumbers } from 'shared/lib/regExp/regExp';
-import { onChangeInputFuncType } from "shared/ui/Input/Input";
 import { Currency } from 'entities/Currency';
 import { Country } from "entities/Country/model/types/Country";
+import { checkArrayToMap } from "shared/lib/checkout/checkout";
+import { Text, TextTheme } from "shared/ui/Text/Text";
+import { useTranslation } from "react-i18next";
 import { ProfilePageHeader } from './ProfilePageHeader/ProfilePageHeader';
 import cls from './ProfilePage.module.scss';
 
@@ -27,17 +28,36 @@ const ProfilePage = () => {
     const dispatch = useAppDispatch();
 
     useEffect(() => {
-        dispatch(fetchProfileData());
+        if (__PROJECT__ !== 'storybook') {
+            dispatch(fetchProfileData());
+        }
     }, [dispatch]);
+
+    const { t } = useTranslation('profile');
 
     const formData = useSelector(getProfileForm);
     const isLoading = useSelector(getProfileLoading);
     const error = useSelector(getProfileError);
     const readonly = useSelector(getProfileReadonly);
+    const validateErrors = useSelector(getProfileValidateErrors);
+
+    const validateErrorsTranslate = {
+        [ValidateProfileError.SERVER_ERROR]: t('Ошибка сервера'),
+        [ValidateProfileError.NO_USER_DATA]: t('Данные не указаны'),
+        [ValidateProfileError.INCORRECT_USER_DATA]: t('Имя и фамилия обязательны'),
+        [ValidateProfileError.INCORRECT_AGE]: t('Некорректный возраст'),
+        [ValidateProfileError.INCORRECT_COUNTRY]: t('Некорректный регион'),
+    };
 
     const onChangeFirstname = useCallback((value?: string) => {
+        if (value?.length === 0) {
+            dispatch(profileActions.addError(ValidateProfileError.INCORRECT_USER_DATA));
+        }
+        else if (value?.length && validateErrors) {
+            dispatch(profileActions.removeErrors(ValidateProfileError.INCORRECT_USER_DATA));
+        }
         dispatch(profileActions.updateProfile({ firstname: value || '' }));
-    }, [dispatch]);
+    }, [dispatch, validateErrors]);
 
     const onChangeLastname = useCallback((value?: string) => {
         dispatch(profileActions.updateProfile({ lastname: value || '' }));
@@ -47,14 +67,21 @@ const ProfilePage = () => {
         const regNumbers = new RegExp(regOnlyNumbers);
         if (emptyString) {
             dispatch(profileActions.updateProfile({ age: undefined }));
+            if (validateErrors) {
+                dispatch(profileActions.removeErrors(ValidateProfileError.INCORRECT_AGE));
+            }
         }
-        if (value && (regNumbers.test(value))) {
+        if (value && (regNumbers.test(value)) && Number(value) < 150) {
             dispatch(profileActions.updateProfile({ age: Number(value) }));
+            if (validateErrors) {
+                dispatch(profileActions.removeErrors(ValidateProfileError.INCORRECT_AGE));
+            }
         }
         else {
-            return new Error('Возраст может состоять только из цифр');
+            dispatch(profileActions.addError(ValidateProfileError.INCORRECT_AGE));
+            return new Error(ValidateProfileError.INCORRECT_AGE);
         }
-    }, [dispatch]);
+    }, [dispatch, validateErrors]);
 
     const onChangeCity = useCallback((value?: string) => {
         dispatch(profileActions.updateProfile({ city: value || '' }));
@@ -81,6 +108,16 @@ const ProfilePage = () => {
         <DynamicModuleLoader reducers={reducers} removeReducerAfterUnmount>
             <div className={classNames(cls.ProfilePage, {}, [])}>
                 <ProfilePageHeader />
+                {
+                    validateErrors && checkArrayToMap(validateErrors)
+                        ? validateErrors.map((error) => (
+                            <Text
+                                theme={TextTheme.ERROR}
+                                text={validateErrorsTranslate[error]}
+                                key={error}
+                            />
+                        )) : null
+                }
                 <ProfileCard
                     data={formData}
                     isLoading={isLoading}

@@ -10,5 +10,10 @@
   "Ваш username": "Username",
   "Ваш возраст": "Age",
   "Ваш город": "City",
-  "Ваше фото профиля": "Link to your avatar photo"
+  "Ваше фото профиля": "Link to your avatar photo",
+  "Ошибка сервера": "Server error",
+  "Данные не указаны": "Your data are empty",
+  "Имя и фамилия обязательны": "Fill your firstname and lastname",
+  "Некорректный возраст": "Incorrect age",
+  "Некорректный регион": "Incorrect region"
 }

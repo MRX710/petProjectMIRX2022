@@ -1,41 +1,39 @@
 import webpack from 'webpack';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import ReactRefreshTypeScript from 'react-refresh-typescript';
 import { BuildOptions } from './types/config';
 import { buildCssLoader } from './loaders/buildCssLoader';
+import { buildBabelLoader } from "./loaders/buildBabelLoader";
 
-export function buildLoaders({ isDev }: BuildOptions): webpack.RuleSetRule[] {
+export function buildLoaders(options: BuildOptions): webpack.RuleSetRule[] {
+    const {
+        isDev,
+    } = options;
+
     const svgLoader = {
         test: /\.svg$/,
         use: ['@svgr/webpack'],
     };
 
-    const babelLoader = {
-        test: /\.(js|jsx|tsx)$/,
-        exclude: /node_modules/,
-        use: {
-            loader: 'babel-loader',
-            options: {
-                presets: ['@babel/preset-env'],
-                plugins: [
-                    [
-                        'i18next-extract',
-                        {
-                            locales: ['ru', 'en'],
-                            keyAsDefaultValue: true,
-                        },
-                    ],
-                ],
-            },
-        },
-    };
+    const babelLoader = buildBabelLoader(options);
 
-    const cssLoader = buildCssLoader(isDev);
+    const cssLoader = buildCssLoader(options);
 
     // Если не используем тайпскрипт - нужен babel-loader
     const typescriptLoader = {
         test: /\.tsx?$/,
-        use: 'ts-loader',
         exclude: /node_modules/,
+
+        // когда используешь массив в use = [{loader: 'ts-loader', и т.д }] - отваливается горячая перезагрузка
+        // (можно проверить изменением css в модалке (в коде) и изменение значений инпутов в браузере, к примеру)
+        use: {
+            loader: 'ts-loader',
+            options: {
+                getCustomTransformers: () => ({
+                    before: [isDev && ReactRefreshTypeScript()].filter(Boolean),
+                }),
+            },
+        },
     };
 
     const fileLoader = {

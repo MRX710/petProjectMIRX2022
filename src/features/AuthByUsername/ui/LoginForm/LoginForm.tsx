@@ -44,7 +44,6 @@ const LoginForm = memo((props: ILoginFormProps) => {
     const isLoading = useSelector(getLoginIsLoading);
     const error = useSelector(getLoginError);
 
-
     const onChangeUsername = useCallback((value: string) => {
         dispatch(loginActions.setUsername(value));
     }, [dispatch]);
@@ -63,7 +62,6 @@ const LoginForm = memo((props: ILoginFormProps) => {
     return (
         <DynamicModuleLoader reducers={initialReducers} removeReducerAfterUnmount>
             <div
-                style={{ backgroundColor: 'red' }}
                 className={classNames(cls.LoginForm, {}, [className])}
             >
                 <Text title={t('Форма авторизации')} />

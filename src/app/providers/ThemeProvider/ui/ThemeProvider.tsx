@@ -26,8 +26,8 @@ const ThemeProvider: FC<IThemeProviderProps> = (props) => {
     const { setDefaultTheme, appendBodyClassnameTheme } = useTheme();
     useEffect(() => {
         const savedTheme = localStorage.getItem(LOCAL_STORAGE_THEME_KEY);
-        if (!!savedTheme && (savedTheme === Theme.LIGHT || savedTheme === Theme.DARK)) {
-            appendBodyClassnameTheme(savedTheme);
+        if (savedTheme) {
+            appendBodyClassnameTheme(savedTheme as Theme);
         }
         else {
             setDefaultTheme();

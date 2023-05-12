@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { IThunkConfig } from 'app/providers/StoreProvider';
-import { IUser, userActions } from 'entities/User';
+import { getUserAuthData, IUser, userActions } from 'entities/User';
 import { USER_LOCALSTORAGE_KEY } from 'shared/const/localStorage';
 
 interface LoginByUsernameProps {
@@ -15,6 +15,7 @@ export const loginByUsername = createAsyncThunk<IUser, LoginByUsernameProps, ITh
             extra,
             dispatch,
             rejectWithValue,
+            getState,
         } = thunkAPI;
         try {
             const response = await extra.api.post<IUser>(
@@ -26,7 +27,9 @@ export const loginByUsername = createAsyncThunk<IUser, LoginByUsernameProps, ITh
             const data = response.data;
             localStorage.setItem(USER_LOCALSTORAGE_KEY, JSON.stringify(data));
             dispatch(userActions.setAuthData(data));
-            if (extra?.navigate) extra.navigate('/about');
+            console.log(getUserAuthData(getState()));
+            if (extra?.navigate) extra.navigate('/profile');
+            console.log('return');
             return response.data;
         }
         catch (err) {

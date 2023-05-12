@@ -1,8 +1,9 @@
 import {
-    AnyAction, configureStore, EnhancedStore, MiddlewareArray, ReducersMapObject, ThunkDispatch,
+    AnyAction, configureStore,
+    createListenerMiddleware, EnhancedStore, MiddlewareArray, ReducersMapObject, ThunkDispatch,
 } from '@reduxjs/toolkit';
 import { counterReducer } from 'entities/Counter';
-import { userReducer } from 'entities/User';
+import { userActions, userReducer } from 'entities/User';
 import { $api } from 'shared/api/api';
 import { NavigateOptions } from 'react-router';
 import { To } from 'react-router-dom';
@@ -31,6 +32,14 @@ export function createReduxStore(
         navigate,
     };
 
+    const listenerMiddleware = createListenerMiddleware();
+    listenerMiddleware.startListening({
+        actionCreator: userActions.setAuthData,
+        effect: async (action, listenerApi) => {
+            // обновление $api переменной
+        },
+    });
+
 
     // const store = configureStore<StateScheme>({
 
@@ -46,7 +55,7 @@ export function createReduxStore(
             thunk: {
                 extraArgument: extraArg,
             },
-        }),
+        }).prepend(listenerMiddleware.middleware),
     });
 
     // @ts-ignore

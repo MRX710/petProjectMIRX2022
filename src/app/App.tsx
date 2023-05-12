@@ -1,20 +1,16 @@
-import React, { Suspense, useEffect } from 'react';
+import React, { memo, Suspense } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { AppRouter } from 'app/providers/router';
 import { Navbar } from 'widgets/Navbar';
 import { Sidebar } from 'widgets/Sidebar';
-import { useDispatch } from 'react-redux';
 import { userActions } from 'entities/User';
-import { useNavigate } from 'react-router-dom';
+import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch";
 
 function App() {
     /* eslint-disable-next-line no-debugger */
     debugger;
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
-    useEffect(() => {
-        dispatch(userActions.initializeAuthData());
-    }, [dispatch]);
+    const dispatch = useAppDispatch();
+    dispatch(userActions.initializeAuthData());
 
     return (
         <div className={classNames('app', {}, [])}>
@@ -29,4 +25,4 @@ function App() {
     );
 }
 
-export default App;
+export default memo(App);

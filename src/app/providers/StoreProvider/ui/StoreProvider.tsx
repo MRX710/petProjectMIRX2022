@@ -1,9 +1,11 @@
-import { ReactNode } from 'react';
-import { Provider } from 'react-redux';
+import { ReactNode, useEffect } from 'react';
+import { Provider, useDispatch, useSelector } from 'react-redux';
 import { createReduxStore } from 'app/providers/StoreProvider/config/store';
 import { StateScheme } from 'app/providers/StoreProvider/config/StateScheme';
 import { ReducersMapObject } from '@reduxjs/toolkit';
 import { useNavigate } from 'react-router-dom';
+import { getUserAuthData, userActions } from "entities/User";
+import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 
 interface StoreProviderProps {
    children?: ReactNode;

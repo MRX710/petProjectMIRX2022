@@ -3,6 +3,7 @@ import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 import AboutIcon from 'shared/assets/icons/about.svg';
 import MainIcon from 'shared/assets/icons/main.svg';
 import ProfileIcon from 'shared/assets/icons/profile.svg';
+import ArticleIcon from 'shared/assets/icons/article.svg';
 
 export interface SidebarItemType {
    path: string
@@ -18,14 +19,20 @@ export const SidebarItemsList: SidebarItemType[] = [
         icon: MainIcon,
     },
     {
+        path: RoutePath.about,
+        text: 'О сайте',
+        icon: AboutIcon,
+    },
+    {
         path: RoutePath.profile,
         text: 'Профиль',
         icon: ProfileIcon,
         authOnly: true,
     },
     {
-        path: RoutePath.about,
-        text: 'О сайте',
-        icon: AboutIcon,
+        path: RoutePath.articles,
+        text: 'Статьи',
+        icon: ArticleIcon,
+        authOnly: true,
     },
 ];

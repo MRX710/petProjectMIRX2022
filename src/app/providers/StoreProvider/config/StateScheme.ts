@@ -9,6 +9,7 @@ import { IProfileScheme } from 'entities/Profile';
 import { AxiosInstance } from 'axios';
 import { To } from 'react-router-dom';
 import { NavigateOptions } from 'react-router';
+import { IArticleDetailsScheme } from 'entities/Article';
 
 export interface StateScheme {
    counter: CounterScheme,
@@ -17,6 +18,7 @@ export interface StateScheme {
    // Async reducers
    loginForm?: ILoginScheme,
    profile?: IProfileScheme,
+   articleDetails?: IArticleDetailsScheme
 }
 
 // типы для работы с редьюсерами

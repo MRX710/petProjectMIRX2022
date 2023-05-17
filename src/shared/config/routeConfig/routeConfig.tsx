@@ -27,7 +27,7 @@ export const RoutePath: Record<AppRoutes, string> = {
     [AppRoutes.ABOUT]: '/about',
     [AppRoutes.PROFILE]: '/profile',
     [AppRoutes.ARTICLES]: '/articles',
-    [AppRoutes.ARTICLE_DETAILS]: '/article_details/', // + :id
+    [AppRoutes.ARTICLE_DETAILS]: '/articles/', // + :id
 
     // последний, потому что охватывает все оставшиеся пути, которых нет
     [AppRoutes.NOT_FOUND]: '*',

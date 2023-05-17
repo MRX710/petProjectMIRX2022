@@ -1,4 +1,4 @@
-import { memo, useCallback } from 'react';
+import { memo, useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Button } from 'shared/ui/Button/Button';
@@ -58,6 +58,20 @@ const LoginForm = memo((props: ILoginFormProps) => {
             onSuccess();
         }
     }, [dispatch, username, password, onSuccess]);
+
+    const onSubmitPressKey = useCallback((event: any) => {
+        if (event.code === 'Enter') {
+            onLoginClick();
+        }
+    }, [onLoginClick]);
+
+    useEffect(() => {
+        document.addEventListener('keydown', onSubmitPressKey);
+
+        return () => {
+            document.removeEventListener('keydown', onSubmitPressKey);
+        };
+    }, [onSubmitPressKey]);
 
     return (
         <DynamicModuleLoader reducers={initialReducers} removeReducerAfterUnmount>

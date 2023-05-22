@@ -7,17 +7,21 @@ interface IFetchProfileDataProps {
    password: string
 }
 
-export const fetchProfileData = createAsyncThunk<IProfile, void, IThunkConfig<string>>(
+export const fetchProfileData = createAsyncThunk<IProfile, string | undefined, IThunkConfig<string>>(
     'profile/fetchProfileData',
-    async (_, thunkAPI) => {
+    async (profileId, thunkAPI) => {
         const {
             extra,
             rejectWithValue,
         } = thunkAPI;
 
+        if (!profileId) {
+            rejectWithValue('error');
+        }
+
         try {
             const response = await extra.api.get<IProfile>(
-                '/profile',
+                `/profile/${profileId}`,
             );
 
             if (!response?.data) {

@@ -1,4 +1,8 @@
 export {
+    getArticleDetailsData,
+} from "entities/Article/model/selectors/articleDetails";
+
+export {
     ArticleDetails,
 } from "./ui/ArticleDetails/ArticleDetails";
 

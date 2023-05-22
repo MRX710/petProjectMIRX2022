@@ -11,6 +11,7 @@ import { To } from 'react-router-dom';
 import { NavigateOptions } from 'react-router';
 import { IArticleDetailsScheme } from 'entities/Article';
 import { IArticleDetailsCommentsScheme } from "pages/ArticleDetailPage";
+import { IAddCommentFormScheme } from 'features/addCommentForm';
 
 export interface StateScheme {
    counter: CounterScheme,
@@ -21,6 +22,7 @@ export interface StateScheme {
    profile?: IProfileScheme,
    articleDetails?: IArticleDetailsScheme,
    articleDetailsComments?: IArticleDetailsCommentsScheme
+   addCommentForm?: IAddCommentFormScheme
 }
 
 // типы для работы с редьюсерами

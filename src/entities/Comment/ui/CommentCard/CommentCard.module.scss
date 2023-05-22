@@ -1,17 +1,21 @@
 .CommentCard {
-  padding: 10px;
-  border: 1px solid var(--primary-color);
+    padding: 10px;
+    border: 1px solid var(--primary-color);
 
-  &__header {
-    display: flex;
-    align-items: center;
-  }
+    &__header {
+        display: flex;
+        align-items: center;
+    }
 
-  &__username {
-    margin-left: 10px;
-  }
+    &__username {
+        margin-left: 10px;
+    }
 
-  &__text {
-    margin-top: 10px;
-  }
+    &__text {
+        margin-top: 10px;
+    }
+
+    &__isLoading {
+        border: none;
+    }
 }

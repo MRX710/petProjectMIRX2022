@@ -26,11 +26,10 @@ export const loginByUsername = createAsyncThunk<IUser, LoginByUsernameProps, ITh
             const data = response.data;
             localStorage.setItem(USER_LOCALSTORAGE_KEY, JSON.stringify(data));
             dispatch(userActions.setAuthData(data));
-            if (extra?.navigate) extra.navigate('/profile');
+            if (extra?.navigate) extra.navigate(`/profile/${data?.id}`);
             return response.data;
         }
         catch (err) {
-            console.log(err);
             return rejectWithValue('error');
         }
     },

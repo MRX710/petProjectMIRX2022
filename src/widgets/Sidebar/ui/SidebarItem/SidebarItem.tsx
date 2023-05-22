@@ -4,12 +4,12 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink';
 import { useSelector } from "react-redux";
 import { getUserAuthData } from "entities/User";
-import { SidebarItemType } from '../../model/items';
+import { SidebarItemType } from "widgets/Sidebar/model/types/sidebar";
 import cls from './SidebarItem.module.scss';
 
 interface ISidebarItemProps {
-    item: SidebarItemType
-    collapsed: boolean
+   item: SidebarItemType
+   collapsed: boolean
 }
 
 export const SidebarItem = memo((props: ISidebarItemProps) => {

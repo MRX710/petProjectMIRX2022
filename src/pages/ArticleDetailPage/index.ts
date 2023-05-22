@@ -1,3 +1,7 @@
 export {
+    IArticleDetailsCommentsScheme,
+} from "./model/types/ArticleDetailsCommentsScheme";
+
+export {
     ArticleDetailPageAsync as ArticleDetailPage,
-} from "pages/ArticleDetailPage/ui/ArticleDetailPage.async";
+} from "./ui/ArticleDetailPage.async";

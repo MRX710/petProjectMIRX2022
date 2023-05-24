@@ -26,7 +26,6 @@ Primary.args = {
         country: Country.Russia,
         city: "Krasnodar",
         username: "admin",
-        // avatar: Avatar,
     },
 };
 Primary.decorators = [];

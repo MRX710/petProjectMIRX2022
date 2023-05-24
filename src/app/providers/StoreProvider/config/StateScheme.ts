@@ -12,6 +12,7 @@ import { NavigateOptions } from 'react-router';
 import { IArticleDetailsScheme } from 'entities/Article';
 import { IArticleDetailsCommentsScheme } from "pages/ArticleDetailPage";
 import { IAddCommentFormScheme } from 'features/addCommentForm';
+import { IArticlesPageScheme } from "pages/ArticlesPage";
 
 export interface StateScheme {
    counter: CounterScheme,
@@ -20,8 +21,11 @@ export interface StateScheme {
    // Async reducers
    loginForm?: ILoginScheme,
    profile?: IProfileScheme,
+   // articles
+   articlesPage?: IArticlesPageScheme
    articleDetails?: IArticleDetailsScheme,
    articleDetailsComments?: IArticleDetailsCommentsScheme
+
    addCommentForm?: IAddCommentFormScheme
 }
 

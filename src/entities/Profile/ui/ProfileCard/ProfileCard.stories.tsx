@@ -2,7 +2,6 @@ import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { Currency } from "entities/Currency";
 import { Country } from "entities/Country";
-import Avatar from "shared/assets/tests/avatar.webp";
 import { ProfileCard } from './ProfileCard';
 
 
@@ -27,7 +26,7 @@ Primary.args = {
         country: Country.Russia,
         city: "Krasnodar",
         username: "admin",
-        avatar: Avatar,
+        // avatar: Avatar,
     },
 };
 Primary.decorators = [];

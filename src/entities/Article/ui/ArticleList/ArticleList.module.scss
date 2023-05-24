@@ -1,0 +1,21 @@
+.LIST {
+    flex: 1;
+
+    .ArticleList {
+        &__item {
+            margin-bottom: 30px;
+        }
+    }
+}
+
+.TILE {
+    display: flex;
+    flex-wrap: wrap;
+
+    .ArticleList {
+        &__item {
+            margin-right: 30px;
+            margin-bottom: 30px;
+        }
+    }
+}

@@ -11,6 +11,10 @@ const response: IArticle = {
     views: 1022,
     createAt: '26.02.2022',
     type: [ArticleEnum.IT],
+    user: {
+        id: '1',
+        username: 'article master',
+    },
     blocks: [
         {
             id: '1',

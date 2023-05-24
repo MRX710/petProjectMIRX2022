@@ -1,0 +1,120 @@
+.ArticleListItem {
+    &__row {
+        display: flex;
+        align-items: center;
+    }
+}
+
+.LIST {
+    .ArticleListItem {
+        &__header {
+            display: flex;
+            align-items: center;
+        }
+
+        &__views {
+            margin-left: auto;
+        }
+
+        &__username {
+            margin-left: 8px;
+        }
+
+        &__date {
+            margin-left: auto;
+        }
+
+        &__title {
+            margin-top: 8px;
+        }
+
+        &__image {
+            height: 250px;
+            width: 100%;
+            object-fit: cover;
+            margin: 16px 0;
+        }
+
+        &__textBlock {
+            max-height: 210px;
+            overflow-y: hidden;
+            margin-bottom: 16px;
+        }
+
+        &__textBlock p {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        &__footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+    }
+}
+
+.TILE {
+    width: 230px;
+    transition: 0.2s scale;
+    cursor: pointer;
+
+    .ArticleListItem {
+        &__imageWrapper {
+            position: relative;
+            width: 200px;
+            height: 200px;
+        }
+
+        &__image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        &__date {
+            display: none;
+            position: absolute;
+            z-index: 5;
+            top: 0;
+            right: 0;
+        }
+
+        &__infoWrapper {
+            display: flex;
+            align-items: center;
+            padding-top: 8px;
+        }
+
+        &__types p {
+            width: 120px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        &__views {
+            margin-left: auto;
+            margin-right: 8px;
+        }
+
+        &__title p {
+            margin-top: 8px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    }
+
+    &:hover {
+        opacity: 0.8;
+        transform: scale(1.01);
+
+        .ArticleListItem {
+            &__date {
+                display: block;
+            }
+        }
+    }
+}

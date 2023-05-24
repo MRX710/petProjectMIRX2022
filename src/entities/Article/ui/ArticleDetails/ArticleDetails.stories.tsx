@@ -18,7 +18,7 @@ const Template: ComponentStory<typeof ArticleDetails> = (args) => <ArticleDetail
 
 const article: IArticle = {
     id: '1',
-    title: 'Javascript news',
+    title: 'JavaScript News',
     subtitle: 'Что нового в JS за 2022 год?',
     img: 'https://teknotower.com/wp-content/uploads/2020/11/js.png',
     views: 1022,

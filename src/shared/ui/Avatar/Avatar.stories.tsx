@@ -1,5 +1,6 @@
 import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
+import AvatarIcon from "shared/assets/tests/avatar.webp";
 import { Avatar } from './Avatar';
 
 export default {
@@ -14,5 +15,5 @@ const Template: ComponentStory<typeof Avatar> = (args) => <Avatar {...args} />;
 
 export const Primary = Template.bind({});
 Primary.args = {
-    src: 'https://pic.rutubelist.ru/user/3b/27/3b2758ad5492a76b578f7ee072e4e894.jpg',
+    src: AvatarIcon,
 };

@@ -5,6 +5,7 @@ import { Country } from "entities/Country";
 import Avatar from "shared/assets/tests/avatar.webp";
 import { ProfileCard } from './ProfileCard';
 
+
 export default {
     title: 'entities/ProfileCard',
     component: ProfileCard,
@@ -20,13 +21,13 @@ Primary.args = {
     data: {
         id: "1",
         firstname: "MIRX",
-        lastname: "MIRX001",
+        lastname: "MIRX01",
         age: 21,
         currency: Currency.RUB,
         country: Country.Russia,
         city: "Krasnodar",
         username: "admin",
-        // avatar: Avatar,
+        avatar: Avatar,
     },
 };
 Primary.decorators = [];

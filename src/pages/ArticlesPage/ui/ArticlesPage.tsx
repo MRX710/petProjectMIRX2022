@@ -7,8 +7,15 @@ import { useInitialEffect } from "shared/lib/hooks/useInitialEffect/useInitialEf
 import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch";
 import { useSelector } from "react-redux";
 import { ToggleViewOfList } from 'features/toggleViewOfList';
+import { Page } from "shared/ui/Page/Page";
+import { fetchNextArticlesList } from "pages/ArticlesPage/model/services/fetchNextArticlesList/fetchNextArticlesList";
 import { fetchArticlesList } from "../model/services/fetchArticlesList/fetchArticlesList";
-import { getArticlesError, getArticlesLoading, getArticlesView } from "../model/selectors/getArticlesPageState";
+import {
+    getArticlesError, getArticlesHasMore,
+    getArticlesLoading,
+    getArticlesPageNum,
+    getArticlesView,
+} from "../model/selectors/getArticlesPageState";
 import { articlesPageActions, articlesPageReducer, getArticles } from '../model/slice/articlesPageSlice';
 
 interface IArticlesPageProps {
@@ -29,19 +36,31 @@ const ArticlesPage: FC<IArticlesPageProps> = (props) => {
     const isLoading = useSelector(getArticlesLoading);
     const error = useSelector(getArticlesError);
     const view = useSelector(getArticlesView);
+    const page = useSelector(getArticlesPageNum);
+    const hasMore = useSelector(getArticlesHasMore);
 
     useInitialEffect(() => {
-        dispatch(fetchArticlesList());
         dispatch(articlesPageActions.initView());
+        dispatch(articlesPageActions.initPagination());
+        dispatch(fetchArticlesList({
+            page: 1,
+        }));
     });
 
     const onChangeView = useCallback((view: IArticleView) => {
         dispatch(articlesPageActions.setView(view));
     }, [dispatch]);
 
+    const onLoadNextPart = useCallback(() => {
+        dispatch(fetchNextArticlesList());
+    }, [dispatch]);
+
     return (
         <DynamicModuleLoader reducers={reducers}>
-            <div className={classNames('', {}, [className])}>
+            <Page
+                className={classNames('', {}, [className])}
+                onScrollEnd={onLoadNextPart}
+            >
                 <ToggleViewOfList
                     view={view}
                     onViewClick={onChangeView}
@@ -51,7 +70,7 @@ const ArticlesPage: FC<IArticlesPageProps> = (props) => {
                     isLoading={isLoading}
                     articles={articles}
                 />
-            </div>
+            </Page>
         </DynamicModuleLoader>
     );
 };

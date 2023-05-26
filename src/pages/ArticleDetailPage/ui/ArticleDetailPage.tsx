@@ -12,6 +12,7 @@ import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch";
 import { AddCommentForm } from "features/addCommentForm";
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { RoutePath } from "shared/config/routeConfig/routeConfig";
+import { Page } from "shared/ui/Page/Page";
 import { fetchCommentsByArticleId } from "../model/services/fetchCommentsByArticleId/fetchCommentsByArticleId";
 import { addCommentForArticle } from "../model/services/addCommentForArticle/addCommentForArticle";
 import { getArticleDetailsCommentsError, getArticleDetailsCommentsIsLoading } from "../model/selectors/comments";
@@ -46,9 +47,9 @@ const ArticleDetailPage = () => {
 
     if (!id) {
         return (
-            <div className={classNames(cls.ArticleDetailPage, {}, [])}>
+            <Page className={classNames(cls.ArticleDetailPage, {}, [])}>
                 {t('Статья не найдена')}
-            </div>
+            </Page>
         );
     }
 
@@ -57,7 +58,7 @@ const ArticleDetailPage = () => {
             reducers={reducers}
             removeReducerAfterUnmount
         >
-            <div className={classNames('', {}, [])}>
+            <Page className={classNames('', {}, [])}>
                 <Button onClick={onBackToList} theme={ButtonTheme.OUTLINE}>
                     {t('Назад к спиcку')}
                 </Button>
@@ -71,7 +72,7 @@ const ArticleDetailPage = () => {
                     isLoading={commentsIsLoading}
                     comments={comments}
                 />
-            </div>
+            </Page>
         </DynamicModuleLoader>
     );
 };

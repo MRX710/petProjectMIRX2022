@@ -36,7 +36,7 @@ export const ToggleViewOfList = memo((props: IToggleViewOfListProps) => {
     };
 
     return (
-        <div className={classNames(cls.ToggleViewOfList, {}, [className])}>
+        <div className={classNames('', {}, [className])}>
             {
                 viewTypes.map((viewType) => (
                     <Button

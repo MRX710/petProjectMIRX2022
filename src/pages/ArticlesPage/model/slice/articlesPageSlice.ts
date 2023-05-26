@@ -11,6 +11,8 @@ const initialState: IArticlesPageScheme = {
     isLoading: false,
     error: undefined,
     view: IArticleView.TILE,
+    page: 1,
+    hasMore: true,
 };
 
 const articlesPageAdapter = createEntityAdapter<IArticle>({
@@ -33,6 +35,12 @@ export const articlesPageSlice = createSlice({
         initView: (state) => {
             state.view = localStorage.getItem(ARTICLE_VIEW_LOCALSTORAGE_KEY) as IArticleView;
         },
+        setPage: (state, action: PayloadAction<number>) => {
+            state.page = action.payload;
+        },
+        initPagination: (state) => {
+            state.limit = state.view === IArticleView.LIST ? 4 : 9;
+        },
     },
     extraReducers: (builder) => {
         builder
@@ -42,7 +50,8 @@ export const articlesPageSlice = createSlice({
             })
             .addCase(fetchArticlesList.fulfilled, (state, action: PayloadAction<IArticle[]>) => {
                 state.isLoading = false;
-                articlesPageAdapter.setAll(state, action?.payload);
+                articlesPageAdapter.addMany(state, action?.payload);
+                state.hasMore = action.payload.length > 0;
             })
             .addCase(fetchArticlesList.rejected, (state, action) => {
                 state.isLoading = false;

@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { checkArrayToMap } from 'shared/lib/checkout/checkout';
 import { classNames } from 'shared/lib/classNames/classNames';
@@ -29,30 +29,27 @@ export const ArticleList = memo((props: IArticleListProps) => {
 
     const { t } = useTranslation();
 
-    const renderArticle = (article: IArticle) => (
-        <ArticleListItem
-            article={article}
-            view={view}
-            className={cls.ArticleList__item}
-            key={article?.id}
-        />
-    );
-
-    if (isLoading) {
-        return (
-            <div className={classNames(cls.ArticleList, {}, [className, cls[view]])}>
-                {
-                    getSkeletons(view)
-                }
-            </div>
-        );
-    }
+    const articlesList = useMemo(() => {
+        if (articles && checkArrayToMap(articles)) {
+            return articles?.map((article) => (
+                <ArticleListItem
+                    article={article}
+                    view={view}
+                    className={cls.ArticleList__item}
+                    key={article?.id}
+                />
+            ));
+        }
+        return null;
+    }, [articles, view]);
 
     return (
         <div className={classNames(cls.ArticleList, {}, [className, cls[view]])}>
             {
-                articles && checkArrayToMap(articles)
-                    ? articles?.map(renderArticle) : null
+                articlesList
+            }
+            {
+                isLoading ? getSkeletons(view) : null
             }
         </div>
     );

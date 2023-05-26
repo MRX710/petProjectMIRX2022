@@ -19,7 +19,7 @@ import {
 import { articlesPageActions, articlesPageReducer, getArticles } from '../model/slice/articlesPageSlice';
 
 interface IArticlesPageProps {
-   className?: string
+    className?: string
 }
 
 const reducers: ReducersList = {
@@ -70,6 +70,9 @@ const ArticlesPage: FC<IArticlesPageProps> = (props) => {
                     isLoading={isLoading}
                     articles={articles}
                 />
+                {
+
+                }
             </Page>
         </DynamicModuleLoader>
     );

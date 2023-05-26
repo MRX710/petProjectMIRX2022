@@ -3,6 +3,7 @@ import {
 } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useInfiniteScroll } from "shared/lib/hooks/useInfiniteScroll/useInfiniteScroll";
+import { Button } from 'shared/ui/Button/Button';
 import cls from './Page.module.scss';
 
 interface IPageProps {
@@ -31,6 +32,16 @@ export const Page: FC<IPageProps> = (props) => {
         <section ref={wrapperRef} className={classNames(cls.Page, {}, [className])}>
             {children}
             <div ref={triggerRef} />
+            {
+                !!onScrollEnd && wrapperRef?.current && wrapperRef?.current?.scrollHeight <= wrapperRef?.current?.clientHeight
+                    ? (
+                        <div style={{ width: '100%', display: "flex", justifyContent: "flex-start" }}>
+                            <Button onClick={onScrollEnd}>
+                                Показать ещё
+                            </Button>
+                        </div>
+                    ) : null
+            }
         </section>
     );
 };

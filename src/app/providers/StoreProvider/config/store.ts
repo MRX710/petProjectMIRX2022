@@ -16,7 +16,7 @@ import { createReducerManager } from './reducerManager';
 export function createReduxStore(
     initialState?: StateScheme,
     asyncReducers?: ReducersMapObject<StateScheme>,
-    navigate?: (to: To, options?: NavigateOptions) => void,
+    // navigate?: (to: To, options?: NavigateOptions) => void,
 ) {
     const rootReducers: ReducersMapObject<StateScheme> = {
         // нужны asyncReducers в случае, когда storybook грузится
@@ -29,7 +29,7 @@ export function createReduxStore(
 
     const extraArg: IThunkExtraArg = {
         api: $api,
-        navigate,
+        // navigate,
     };
 
     const listenerMiddleware = createListenerMiddleware();

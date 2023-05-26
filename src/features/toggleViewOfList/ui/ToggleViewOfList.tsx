@@ -40,6 +40,7 @@ export const ToggleViewOfList = memo((props: IToggleViewOfListProps) => {
             {
                 viewTypes.map((viewType) => (
                     <Button
+                        key={viewType.view}
                         onClick={onClick(viewType.view)}
                         theme={ButtonTheme.CLEAR}
                     >

@@ -31,6 +31,7 @@ export interface StateScheme {
 
 // типы для работы с редьюсерами
 export type StateSchemeKey = keyof StateScheme;
+export type MountedReducers = OptionalRecord<StateSchemeKey, boolean>;
 
 export interface IReducerManager {
    getReducerMap: () => ReducersMapObject<StateScheme>
@@ -38,6 +39,8 @@ export interface IReducerManager {
    reduce: Reducer<CombinedState<StateScheme>>
    add: (key: StateSchemeKey, reducer: Reducer) => void
    remove: (key: StateSchemeKey) => void
+   // true - вмонтирован, false - не вмонтирован
+   getMountedReducers: () => MountedReducers
 }
 
 export interface IReduxStoreWithManager extends EnhancedStore<StateScheme> {

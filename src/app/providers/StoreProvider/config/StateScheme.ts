@@ -13,10 +13,12 @@ import { IArticleDetailsScheme } from 'entities/Article';
 import { IArticleDetailsCommentsScheme } from "pages/ArticleDetailPage";
 import { IAddCommentFormScheme } from 'features/addCommentForm';
 import { IArticlesPageScheme } from "pages/ArticlesPage";
+import { IScrollRestoreScheme } from "features/scrollRestore";
 
 export interface StateScheme {
    counter: CounterScheme,
    user: IUserScheme
+   scrollRestore: IScrollRestoreScheme
 
    // Async reducers
    loginForm?: ILoginScheme,

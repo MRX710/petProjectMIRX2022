@@ -6,7 +6,7 @@ import { useInitialEffect } from "shared/lib/hooks/useInitialEffect/useInitialEf
 import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch";
 import { useSelector } from "react-redux";
 import { ToggleViewOfList } from 'features/toggleViewOfList';
-import { Page } from "shared/ui/Page/Page";
+import { Page } from "widgets/Page/Page";
 import { fetchNextArticlesList } from "pages/ArticlesPage/model/services/fetchNextArticlesList/fetchNextArticlesList";
 import { initArticlesPage } from "../model/services/initArticlesPage/initArticlesPage";
 import { getArticlesLoading, getArticlesView } from "../model/selectors/getArticlesPageState";

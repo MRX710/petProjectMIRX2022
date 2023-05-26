@@ -9,6 +9,7 @@ import { NavigateOptions } from 'react-router';
 import { To } from 'react-router-dom';
 import { CombinedState, Reducer } from 'redux';
 import { ThunkMiddleware } from 'redux-thunk';
+import { scrollRestoreReducer } from 'features/scrollRestore';
 import { IThunkExtraArg, StateScheme } from './StateScheme';
 import { createReducerManager } from './reducerManager';
 
@@ -23,6 +24,7 @@ export function createReduxStore(
         ...asyncReducers,
         counter: counterReducer,
         user: userReducer,
+        scrollRestore: scrollRestoreReducer,
     };
 
     const reducerManager = createReducerManager(rootReducers);

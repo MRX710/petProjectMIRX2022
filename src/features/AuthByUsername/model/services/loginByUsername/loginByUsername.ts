@@ -17,7 +17,7 @@ export const loginByUsername = createAsyncThunk<IUser, LoginByUsernameProps, ITh
             rejectWithValue,
         } = thunkAPI;
         try {
-            if (authData!.username || authData!.password) {
+            if (!authData!.username || !authData!.password) {
                 return rejectWithValue('Введите username и пароль');
             }
             const response = await extra.api.post<IUser>(
@@ -27,7 +27,6 @@ export const loginByUsername = createAsyncThunk<IUser, LoginByUsernameProps, ITh
             if (!response.data) throw new Error('Данных нет!');
 
             const data = response.data;
-            localStorage.setItem(USER_LOCALSTORAGE_KEY, JSON.stringify(data));
             dispatch(userActions.setAuthData(data));
             if (extra?.navigate) extra.navigate(`/profile/${data?.id}`);
             return response.data;

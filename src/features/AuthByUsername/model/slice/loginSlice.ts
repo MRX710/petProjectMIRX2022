@@ -3,8 +3,8 @@ import { ILoginScheme } from 'features/AuthByUsername/model/types/loginScheme';
 import { loginByUsername } from '../../model/services/loginByUsername/loginByUsername';
 
 const initialState: ILoginScheme = {
-    username: null,
-    password: null,
+    username: 'admin',
+    password: '123',
     isLoading: false,
 };
 

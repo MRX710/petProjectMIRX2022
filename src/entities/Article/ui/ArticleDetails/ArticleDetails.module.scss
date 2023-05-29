@@ -1,35 +1,36 @@
 .ArticleDetails {
-    min-height: 100%;
-    width: 100%;
+  min-height: 100%;
+  width: 100%;
 }
 
 .avatarWrapper {
-    display: flex;
-    width: 100%;
-    justify-content: center;
+  display: flex;
+  width: 100%;
+  justify-content: center;
 }
 
 .avatar {
-    margin: 0 auto;
+  margin: 0 auto;
+  object-fit: contain;
 }
 
 .title {
-    margin-top: 20px;
+  margin-top: 20px;
 }
 
 .skeleton {
-    margin-top: 15px;
+  margin-top: 15px;
 }
 
 .logo {
-    margin-right: 8px;
+  margin-right: 8px;
 }
 
 .articleInfo {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .block {
-    margin-top: 16px;
+  margin-top: 16px;
 }

@@ -3,8 +3,8 @@ import { ILoginScheme } from 'features/AuthByUsername/model/types/loginScheme';
 import { loginByUsername } from '../../model/services/loginByUsername/loginByUsername';
 
 const initialState: ILoginScheme = {
-    username: '',
-    password: '',
+    username: null,
+    password: null,
     isLoading: false,
 };
 
@@ -12,10 +12,10 @@ export const loginSlice = createSlice({
     name: 'login',
     initialState,
     reducers: {
-        setUsername: (state, action: PayloadAction<string>) => {
+        setUsername: (state, action: PayloadAction<string | null>) => {
             state.username = action.payload;
         },
-        setPassword: (state, action: PayloadAction<string>) => {
+        setPassword: (state, action: PayloadAction<string | null>) => {
             state.password = action.payload;
         },
     },

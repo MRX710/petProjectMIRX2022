@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { checkArrayToMap } from 'shared/lib/checkout/checkout';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { ArticleListItemSkeleton } from "entities/Article/ui/ArticleListItem/ArticleListItemSkeleton";
+import { Text, TextSize, TextTheme } from "shared/ui/Text/Text";
 import { ArticleListItem } from "../ArticleListItem/ArticleListItem";
 import { IArticle, IArticleView } from "../../model/types/article";
 import cls from './ArticleList.module.scss';
@@ -42,6 +43,14 @@ export const ArticleList = memo((props: IArticleListProps) => {
         }
         return null;
     }, [articles, view]);
+
+    if (!isLoading && (!articles || !checkArrayToMap(articles))) {
+        return (
+            <div className={classNames(cls.ArticleList, {}, [className, cls[view]])}>
+                <Text title={t('Статьи не найдены')} size={TextSize.L} />
+            </div>
+        );
+    }
 
     return (
         <div className={classNames(cls.ArticleList, {}, [className, cls[view]])}>

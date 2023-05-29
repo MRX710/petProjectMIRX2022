@@ -3,7 +3,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { ToggleViewOfList } from './ToggleViewOfList';
 
 export default {
-    title: 'shared/ToggleViewOfList',
+    title: 'features/ToggleViewOfList',
     component: ToggleViewOfList,
     argTypes: {
         backgroundColor: { control: 'color' },

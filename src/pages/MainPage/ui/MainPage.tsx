@@ -7,9 +7,9 @@ import { Page } from "widgets/Page/Page";
 const MainPage = () => {
     const { t } = useTranslation();
 
-    const [value, setValue] = useState('');
+    const [value, setValue] = useState<string | null>(null);
 
-    const onChange = (val: string) => {
+    const onChange = (val: string | null) => {
         setValue(val);
     };
 

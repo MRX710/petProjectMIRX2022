@@ -11,6 +11,7 @@ const initialState: IArticlesPageScheme = {
     isLoading: false,
     error: undefined,
     view: IArticleView.TILE,
+    limit: 9,
     page: 1,
     hasMore: true,
     _inited: false,
@@ -41,17 +42,29 @@ export const articlesPageSlice = createSlice({
         setPage: (state, action: PayloadAction<number>) => {
             state.page = action.payload;
         },
+        setHasMore: (state, action: PayloadAction<boolean>) => {
+            state.hasMore = action.payload;
+        },
     },
     extraReducers: (builder) => {
         builder
             .addCase(fetchArticlesList.pending, (state, action) => {
                 state.error = undefined;
                 state.isLoading = true;
+
+                if (action?.meta?.arg?.resetPreviousData) {
+                    articlesPageAdapter.setAll(state, []);
+                }
             })
-            .addCase(fetchArticlesList.fulfilled, (state, action: PayloadAction<IArticle[]>) => {
+            .addCase(fetchArticlesList.fulfilled, (state, action) => {
                 state.isLoading = false;
-                articlesPageAdapter.addMany(state, action?.payload);
-                state.hasMore = action.payload.length > 0;
+                if (action?.meta?.arg?.resetPreviousData) {
+                    articlesPageAdapter.setAll(state, action?.payload);
+                }
+                else {
+                    articlesPageAdapter.addMany(state, action?.payload);
+                }
+                state.hasMore = action.payload.length >= state.limit;
             })
             .addCase(fetchArticlesList.rejected, (state, action) => {
                 state.isLoading = false;

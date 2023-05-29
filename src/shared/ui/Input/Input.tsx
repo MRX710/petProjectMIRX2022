@@ -1,19 +1,21 @@
 import { classNames, Mods } from 'shared/lib/classNames/classNames';
 import React, {
-    InputHTMLAttributes, memo, useEffect, useRef, useState,
+    InputHTMLAttributes, KeyboardEvent, memo, useCallback, useEffect, useRef, useState,
 } from 'react';
 import cls from './Input.module.scss';
 
 type HTMLInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'onChange' | 'readOnly'>
 
-export type onChangeInputFuncType = (value: string, emptyString: boolean) => any | void
+export type onChangeInputFuncType = (value: string | null, emptyString: boolean) => any | void
 
 interface InputProps extends HTMLInputProps {
    className?: string;
-   value?: string | number;
+   value?: string | number | null;
    onChange?: onChangeInputFuncType;
    autofocus?: boolean;
    readOnly?: boolean
+   onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void
+   onRequest?: () => void
 }
 
 export const Input = memo((props: InputProps) => {
@@ -25,6 +27,7 @@ export const Input = memo((props: InputProps) => {
         placeholder,
         autofocus,
         readOnly,
+        onRequest,
         ...otherProps
     } = props;
     const ref = useRef<HTMLInputElement>(null);
@@ -42,7 +45,7 @@ export const Input = memo((props: InputProps) => {
 
 
     const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const resultOfOperation = onChange?.(e.target.value, e.target.value.length <= 0);
+        const resultOfOperation = onChange?.(e.target.value !== '' ? e.target.value : null, e.target.value.length <= 0);
         if (resultOfOperation instanceof Error) {
             console.log('Error');
         }
@@ -59,6 +62,12 @@ export const Input = memo((props: InputProps) => {
     const onSelect = (e: any) => {
         setCaretPosition(e?.target?.selectionStart || 0);
     };
+
+    const onKeyDown = useCallback((e) => {
+        if (e.keyCode === 13) {
+            onRequest?.();
+        }
+    }, [onRequest]);
 
     const inputMods: Mods = {
         [cls.readOnly]: readOnly,
@@ -86,6 +95,7 @@ export const Input = memo((props: InputProps) => {
                     onBlur={onBlur}
                     onSelect={onSelect}
                     readOnly={readOnly}
+                    onKeyDown={onKeyDown}
                     {...otherProps}
                 />
                 {isFocused && (

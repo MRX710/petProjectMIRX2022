@@ -3,7 +3,7 @@ import { IAddCommentFormScheme } from '../types/addCommentForm';
 
 
 const initialState: IAddCommentFormScheme = {
-    text: '',
+    text: null,
     error: undefined,
 };
 
@@ -11,7 +11,7 @@ export const addCommentFormSlice = createSlice({
     name: 'addCommentFormSlice',
     initialState,
     reducers: {
-        setText: (state, action: PayloadAction<string>) => {
+        setText: (state, action: PayloadAction<string | null>) => {
             state.text = action.payload;
         },
     },

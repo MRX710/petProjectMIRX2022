@@ -11,8 +11,8 @@ export enum ValidateProfileError {
 
 export interface IProfile {
    id?: string
-   'firstname'?: string,
-   'lastname'?: string,
+   'firstname'?: string | null,
+   'lastname'?: string | null,
    'age'?: number,
    'currency'?: Currency,
    'country'?: Country,

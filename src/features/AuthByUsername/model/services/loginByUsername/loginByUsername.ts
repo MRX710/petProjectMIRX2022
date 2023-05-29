@@ -1,11 +1,11 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { IThunkConfig } from 'app/providers/StoreProvider';
-import { getUserAuthData, IUser, userActions } from 'entities/User';
+import { IUser, userActions } from 'entities/User';
 import { USER_LOCALSTORAGE_KEY } from 'shared/const/localStorage';
 
 interface LoginByUsernameProps {
-   username: string
-   password: string
+   username: string | null
+   password: string | null
 }
 
 export const loginByUsername = createAsyncThunk<IUser, LoginByUsernameProps, IThunkConfig<string>>(
@@ -17,6 +17,9 @@ export const loginByUsername = createAsyncThunk<IUser, LoginByUsernameProps, ITh
             rejectWithValue,
         } = thunkAPI;
         try {
+            if (authData!.username || authData!.password) {
+                return rejectWithValue('Введите username и пароль');
+            }
             const response = await extra.api.post<IUser>(
                 '/login',
                 authData,

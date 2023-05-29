@@ -30,7 +30,7 @@ const AddCommentForm = memo((props: IAddCommentFormProps) => {
     const error = useSelector(getAddCommentFormError);
     const dispatch = useAppDispatch();
 
-    const onCommentTextChange = useCallback((value: string) => {
+    const onCommentTextChange = useCallback((value: string | null) => {
         dispatch(addCommentFormActions.setText(value));
     }, [dispatch]);
 

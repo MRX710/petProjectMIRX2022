@@ -1,4 +1,6 @@
-import { useCallback } from 'react';
+import {
+    MutableRefObject, useCallback, useEffect, useRef,
+} from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { DynamicModuleLoader, ReducersList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import {
@@ -19,6 +21,7 @@ import { useTranslation } from "react-i18next";
 import { useInitialEffect } from "shared/lib/hooks/useInitialEffect/useInitialEffect";
 import { useParams } from "react-router-dom";
 import { Page } from "widgets/Page/Page";
+import { useCallbackInTimeout } from "shared/lib/hooks/useCallbackInTimeout/useCallbackInTimeout";
 import { ProfilePageHeader } from './ProfilePageHeader/ProfilePageHeader';
 import cls from './ProfilePage.module.scss';
 
@@ -51,21 +54,24 @@ const ProfilePage = () => {
         [ValidateProfileError.INCORRECT_COUNTRY]: t('Некорректный регион'),
     };
 
-    const onChangeFirstname = useCallback((value?: string) => {
-        if (value?.length === 0) {
+    const callErrorWithTimeout = useCallbackInTimeout(2000);
+
+
+    const onChangeFirstname = useCallback((value: string | null) => {
+        if (!value) {
             dispatch(profileActions.addError(ValidateProfileError.INCORRECT_USER_DATA));
         }
-        else if (value?.length && validateErrors) {
+        else if (!!value && validateErrors) {
             dispatch(profileActions.removeErrors(ValidateProfileError.INCORRECT_USER_DATA));
         }
-        dispatch(profileActions.updateProfile({ firstname: value || '' }));
+        dispatch(profileActions.updateProfile({ firstname: value }));
     }, [dispatch, validateErrors]);
 
-    const onChangeLastname = useCallback((value?: string) => {
-        dispatch(profileActions.updateProfile({ lastname: value || '' }));
+    const onChangeLastname = useCallback((value: string | null) => {
+        dispatch(profileActions.updateProfile({ lastname: value }));
     }, [dispatch]);
 
-    const onChangeAge = useCallback((value: string, emptyString: boolean) => {
+    const onChangeAge = useCallback((value: string | null, emptyString: boolean) => {
         const regNumbers = new RegExp(regOnlyNumbers);
         if (emptyString) {
             dispatch(profileActions.updateProfile({ age: undefined }));
@@ -81,19 +87,23 @@ const ProfilePage = () => {
         }
         else {
             dispatch(profileActions.addError(ValidateProfileError.INCORRECT_AGE));
+            callErrorWithTimeout(
+                () => dispatch(profileActions.removeErrors(ValidateProfileError.INCORRECT_AGE)),
+            );
+
             return new Error(ValidateProfileError.INCORRECT_AGE);
         }
-    }, [dispatch, validateErrors]);
+    }, [dispatch, validateErrors, callErrorWithTimeout]);
 
-    const onChangeCity = useCallback((value?: string) => {
+    const onChangeCity = useCallback((value: string | null) => {
         dispatch(profileActions.updateProfile({ city: value || '' }));
     }, [dispatch]);
 
-    const onChangeUsername = useCallback((value?: string) => {
+    const onChangeUsername = useCallback((value: string | null) => {
         dispatch(profileActions.updateProfile({ username: value || '' }));
     }, [dispatch]);
 
-    const onChangeAvatar = useCallback((value?: string) => {
+    const onChangeAvatar = useCallback((value: string | null) => {
         dispatch(profileActions.updateProfile({ avatar: value || '' }));
     }, [dispatch]);
 

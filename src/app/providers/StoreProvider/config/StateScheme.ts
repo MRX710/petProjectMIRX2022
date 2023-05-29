@@ -14,6 +14,7 @@ import { IArticleDetailsCommentsScheme } from "pages/ArticleDetailPage";
 import { IAddCommentFormScheme } from 'features/addCommentForm';
 import { IArticlesPageScheme } from "pages/ArticlesPage";
 import { IScrollRestoreScheme } from "features/scrollRestore";
+import { IArticlesSortScheme } from "features/articlesSort";
 
 export interface StateScheme {
    counter: CounterScheme,
@@ -27,6 +28,7 @@ export interface StateScheme {
    articlesPage?: IArticlesPageScheme
    articleDetails?: IArticleDetailsScheme,
    articleDetailsComments?: IArticleDetailsCommentsScheme
+   articlesSort?: IArticlesSortScheme,
 
    addCommentForm?: IAddCommentFormScheme
 }

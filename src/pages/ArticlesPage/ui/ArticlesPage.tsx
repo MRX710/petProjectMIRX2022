@@ -5,12 +5,16 @@ import { DynamicModuleLoader, ReducersList } from "shared/lib/components/Dynamic
 import { useInitialEffect } from "shared/lib/hooks/useInitialEffect/useInitialEffect";
 import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch";
 import { useSelector } from "react-redux";
-import { ToggleViewOfList } from 'features/toggleViewOfList';
 import { Page } from "widgets/Page/Page";
 import { fetchNextArticlesList } from "pages/ArticlesPage/model/services/fetchNextArticlesList/fetchNextArticlesList";
+import { articlesSortReducer, IArticlesSortScheme } from "features/articlesSort";
+import { ArticlesSort } from "features/articlesSort/ui/ArticlesSort";
+import { fetchArticlesList } from "pages/ArticlesPage/model/services/fetchArticlesList/fetchArticlesList";
+import { useSearchParams } from 'react-router-dom';
 import { initArticlesPage } from "../model/services/initArticlesPage/initArticlesPage";
 import { getArticlesLoading, getArticlesView } from "../model/selectors/getArticlesPageState";
 import { articlesPageActions, articlesPageReducer, getArticles } from '../model/slice/articlesPageSlice';
+import cls from './ArticlesPage.module.scss';
 
 interface IArticlesPageProps {
    className?: string
@@ -18,6 +22,7 @@ interface IArticlesPageProps {
 
 const reducers: ReducersList = {
     articlesPage: articlesPageReducer,
+    articlesSort: articlesSortReducer,
 };
 
 const ArticlesPage: FC<IArticlesPageProps> = (props) => {
@@ -29,8 +34,10 @@ const ArticlesPage: FC<IArticlesPageProps> = (props) => {
     const isLoading = useSelector(getArticlesLoading);
     const view = useSelector(getArticlesView);
 
+    const [searchParams, setSearchParams] = useSearchParams();
+
     useInitialEffect(() => {
-        dispatch(initArticlesPage());
+        dispatch(initArticlesPage(searchParams));
     });
 
     const onChangeView = useCallback((view: IArticleView) => {
@@ -41,24 +48,33 @@ const ArticlesPage: FC<IArticlesPageProps> = (props) => {
         dispatch(fetchNextArticlesList());
     }, [dispatch]);
 
+    const onChangeFilters = useCallback((filter?: DeepPartial<IArticlesSortScheme>) => {
+        articlesPageActions.setHasMore(true);
+        dispatch(fetchArticlesList({
+            page: 1,
+            newPage: true,
+            resetPreviousData: true,
+            filterField: filter,
+        }));
+    }, [dispatch]);
+
     return (
         <DynamicModuleLoader reducers={reducers} removeReducerAfterUnmount={false}>
             <Page
                 className={classNames('', {}, [className])}
                 onScrollEnd={onLoadNextPart}
             >
-                <ToggleViewOfList
+                <ArticlesSort
                     view={view}
                     onViewClick={onChangeView}
+                    onRequest={onChangeFilters}
                 />
                 <ArticleList
                     view={view}
                     isLoading={isLoading}
                     articles={articles}
+                    className={cls.list}
                 />
-                {
-
-                }
             </Page>
         </DynamicModuleLoader>
     );

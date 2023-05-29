@@ -11,11 +11,14 @@
 .TILE {
     display: flex;
     flex-wrap: wrap;
+    gap: 30px;
 
     .ArticleList {
         &__item {
-            margin-right: 30px;
-            margin-bottom: 30px;
+            @supports not (gap: 30px) {
+                margin-right: 30px;
+                margin-bottom: 30px;
+            }
         }
     }
 }

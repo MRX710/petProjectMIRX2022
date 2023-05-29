@@ -57,7 +57,7 @@ export const Page: FC<IPageProps> = (props) => {
             onScroll={onScroll}
         >
             {children}
-            <div ref={triggerRef} />
+            {onScrollEnd ? <div className={cls.trigger} ref={triggerRef} /> : null}
             {
                 !!onScrollEnd && wrapperRef?.current && wrapperRef?.current?.scrollHeight <= wrapperRef?.current?.clientHeight
                     ? (

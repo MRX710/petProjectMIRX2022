@@ -1,4 +1,4 @@
 export interface IAddCommentFormScheme {
-   text?: string
+   text: string | null
    error?: string
 }

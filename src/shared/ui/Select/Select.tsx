@@ -1,25 +1,24 @@
-import {
-    ChangeEvent, FC, memo, useMemo,
-} from 'react';
+import { ChangeEvent, useMemo } from 'react';
 import { classNames, Mods } from 'shared/lib/classNames/classNames';
 import { checkArrayToMap } from "shared/lib/checkout/checkout";
+import { typedMemo } from "shared/types/memo";
 import cls from './Select.module.scss';
 
-interface ISelectOption {
-   value: string
+export interface ISelectOption<T extends string> {
+   value: T
    content: string
 }
 
-interface ISelectProps {
+interface ISelectProps<T extends string> {
    className?: string
    label?: string
-   options?: ISelectOption[]
-   value?: string
-   onChange?: (value: string) => void
+   options?: ISelectOption<T>[]
+   value?: T
+   onChange?: (value: T) => void
    readonly?: boolean
 }
 
-export const Select = memo((props: ISelectProps) => {
+export const Select = typedMemo(<T extends string>(props: ISelectProps<T>) => {
     const {
         className,
         label,
@@ -45,7 +44,7 @@ export const Select = memo((props: ISelectProps) => {
     }, [options]);
 
     const onChangeHandler = (e: ChangeEvent<HTMLSelectElement>) => {
-        onChange?.(e.target.value);
+        onChange?.(e.target.value as T);
     };
 
     const mods: Mods = {

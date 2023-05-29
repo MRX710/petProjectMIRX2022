@@ -1,7 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { USER_LOCALSTORAGE_KEY } from 'shared/const/localStorage';
-import { changeApi } from "shared/api/api";
-import axios from "axios";
 import { IUser, IUserScheme } from '../types/user';
 
 const initialState: IUserScheme = {
@@ -15,12 +13,6 @@ export const userSlice = createSlice({
         setAuthData: (state, action: PayloadAction<IUser>) => {
             state.authData = action.payload;
             localStorage.setItem(USER_LOCALSTORAGE_KEY, JSON.stringify(action.payload));
-            changeApi(axios.create({
-                baseURL: __API__,
-                headers: {
-                    authorization: localStorage.getItem(USER_LOCALSTORAGE_KEY) || '',
-                },
-            }));
         },
         initializeAuthData: (state) => {
             const user = localStorage.getItem(USER_LOCALSTORAGE_KEY);

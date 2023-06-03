@@ -22,6 +22,7 @@ module.exports = {
         '@typescript-eslint',
         'i18next',
         'react-hooks',
+        'mirx-eslint-plugin',
     ],
     rules: {
         'linebreak-style': ['error', process.platform === 'win32' ? 'windows' : 'unix'],
@@ -71,6 +72,7 @@ module.exports = {
         'no-param-reassign': 'off',
         'no-undef': 'off',
         'react/no-array-index-key': 'warn',
+        'mirx-eslint-plugin/path-checker': 'error',
     },
     globals: {
         __IS_DEV__: true,

@@ -1,6 +1,6 @@
 import { SortOrder } from "shared/types/baseFilters";
-import { IArticleSortField } from "features/articlesSort/model/types/articlesSort";
 import { ArticleEnum } from "entities/Article/model/types/article";
+import { IArticleSortField } from "./articlesSort";
 
 export interface IArticlesSortScheme {
    order: SortOrder

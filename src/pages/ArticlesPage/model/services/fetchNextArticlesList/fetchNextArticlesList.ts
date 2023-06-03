@@ -4,8 +4,8 @@ import {
     getArticlesHasMore,
     getArticlesLoading,
     getArticlesPageNum,
-} from "pages/ArticlesPage/model/selectors/getArticlesPageState";
-import { fetchArticlesList } from "pages/ArticlesPage/model/services/fetchArticlesList/fetchArticlesList";
+} from "../../selectors/getArticlesPageState";
+import { fetchArticlesList } from "../fetchArticlesList/fetchArticlesList";
 
 export const fetchNextArticlesList = createAsyncThunk<void, void, IThunkConfig<string>>(
     'articlesPage/fetchNextArticlesList',

@@ -7,13 +7,13 @@ import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch";
 import { useSelector } from "react-redux";
 import { Card } from 'shared/ui/Card/Card';
 import { Input } from 'shared/ui/Input/Input';
-import { ArticlesSortSelector } from "features/articlesSort/ui/ArticlesSortSelector/ArticlesSortSelector";
 import { SortOrder } from "shared/types/baseFilters";
-import { IArticleSortField } from "features/articlesSort/model/types/articlesSort";
-import { IArticlesSortScheme } from "features/articlesSort";
 import { useDebounce } from "shared/lib/hooks/useDebounce/useDebounce";
 import { ITabItem, Tabs } from "shared/ui/Tabs/Tabs";
 import { ArticleEnum } from "entities/Article/model/types/article";
+import { IArticleSortField } from "../model/types/articlesSort";
+import { ArticlesSortSelector } from "./ArticlesSortSelector/ArticlesSortSelector";
+import { IArticlesSortScheme } from "../model/types/articlesSortScheme";
 import {
     getArticlesFiltersOrder,
     getArticlesFiltersSearch,

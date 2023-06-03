@@ -1,8 +1,8 @@
-import {
-    IProfileScheme, profileActions, profileReducer, updateProfileData, ValidateProfileError,
-} from "entities/Profile";
 import { Currency } from "entities/Currency";
 import { Country } from "entities/Country";
+import { IProfileScheme, ValidateProfileError } from "../types/profileTypes";
+import { profileActions, profileReducer } from "./profileSlice";
+import { updateProfileData } from "../service/updateProfileData/updateProfileData";
 
 const data = {
     firstname: "MIRX",

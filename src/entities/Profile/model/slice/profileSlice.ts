@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { fetchProfileData, ValidateProfileError } from 'entities/Profile';
-import { updateProfileData } from "entities/Profile/model/service/updateProfileData/updateProfileData";
 import { checkArrayToMap } from "shared/lib/checkout/checkout";
-import { IProfile, IProfileScheme } from '../types/profileTypes';
+import { fetchProfileData } from '../service/fetchProfileData/fetchProfileData';
+import { updateProfileData } from "../service/updateProfileData/updateProfileData";
+import { IProfile, IProfileScheme, ValidateProfileError } from '../types/profileTypes';
 
 const initialState: IProfileScheme = {
     readonly: true,

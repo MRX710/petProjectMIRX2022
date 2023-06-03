@@ -4,10 +4,9 @@ import {
 } from '@reduxjs/toolkit';
 import { IComment } from "entities/Comment";
 import { StateScheme } from "app/providers/StoreProvider";
-import { fetchProfileData, IProfile } from "entities/Profile";
 import {
     fetchCommentsByArticleId,
-} from "pages/ArticleDetailPage/model/services/fetchCommentsByArticleId/fetchCommentsByArticleId";
+} from "../services/fetchCommentsByArticleId/fetchCommentsByArticleId";
 import { IArticleDetailsCommentsScheme } from "../types/ArticleDetailsCommentsScheme";
 
 const initialState: IArticleDetailsCommentsScheme = {

@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import { classNames, Mods } from 'shared/lib/classNames/classNames';
+import { classNames } from 'shared/lib/classNames/classNames';
 import TileIcon from 'shared/assets/icons/tile.svg';
 import ListIcon from 'shared/assets/icons/list.svg';
 import { IArticleView } from "entities/Article";

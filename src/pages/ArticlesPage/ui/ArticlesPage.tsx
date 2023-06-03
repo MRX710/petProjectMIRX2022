@@ -6,11 +6,11 @@ import { useInitialEffect } from "shared/lib/hooks/useInitialEffect/useInitialEf
 import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch";
 import { useSelector } from "react-redux";
 import { Page } from "widgets/Page/Page";
-import { fetchNextArticlesList } from "pages/ArticlesPage/model/services/fetchNextArticlesList/fetchNextArticlesList";
 import { articlesSortReducer, IArticlesSortScheme } from "features/articlesSort";
 import { ArticlesSort } from "features/articlesSort/ui/ArticlesSort";
-import { fetchArticlesList } from "pages/ArticlesPage/model/services/fetchArticlesList/fetchArticlesList";
 import { useSearchParams } from 'react-router-dom';
+import { fetchArticlesList } from "../model/services/fetchArticlesList/fetchArticlesList";
+import { fetchNextArticlesList } from "../model/services/fetchNextArticlesList/fetchNextArticlesList";
 import { initArticlesPage } from "../model/services/initArticlesPage/initArticlesPage";
 import { getArticlesLoading, getArticlesView } from "../model/selectors/getArticlesPageState";
 import { articlesPageActions, articlesPageReducer, getArticles } from '../model/slice/articlesPageSlice';

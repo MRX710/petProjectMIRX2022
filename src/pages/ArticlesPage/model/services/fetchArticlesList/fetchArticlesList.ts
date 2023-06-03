@@ -2,12 +2,6 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { IThunkConfig } from 'app/providers/StoreProvider';
 import { IArticle } from "entities/Article";
 import {
-    getArticlesHasMore,
-    getArticlesLimit,
-    getArticlesPageNum,
-} from "pages/ArticlesPage/model/selectors/getArticlesPageState";
-import { articlesPageActions } from "pages/ArticlesPage/model/slice/articlesPageSlice";
-import {
     getArticlesFiltersOrder,
     getArticlesFiltersSearch,
     getArticlesFiltersSort,
@@ -16,6 +10,12 @@ import {
 import { IArticlesSortScheme } from "features/articlesSort";
 import { addQueryParams } from "shared/lib/url/addQueryParams/addQueryParams";
 import { ArticleEnum } from "entities/Article/model/types/article";
+import { articlesPageActions } from "../../slice/articlesPageSlice";
+import {
+    getArticlesHasMore,
+    getArticlesLimit,
+    getArticlesPageNum,
+} from "../../selectors/getArticlesPageState";
 
 
 interface IFetchArticlesListProps {

@@ -1,8 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { IThunkConfig } from 'app/providers/StoreProvider';
-import { getProfileForm } from "entities/Profile";
-import { validateProfileData } from "entities/Profile/model/service/validateProfileData/validateProfileData";
+import { getProfileForm } from '../../selectors/getProfileForm/getProfileForm';
 import { IProfile, ValidateProfileError } from '../../types/profileTypes';
+import { validateProfileData } from '../validateProfileData/validateProfileData';
 
 interface IUpdateProfileDataProps extends IProfile {
 

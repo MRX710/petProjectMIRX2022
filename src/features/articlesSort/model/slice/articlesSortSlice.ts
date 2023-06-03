@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { IArticleSortField } from "features/articlesSort/model/types/articlesSort";
 import { SortOrder } from "shared/types/baseFilters";
 import { ArticleEnum } from "entities/Article/model/types/article";
 import { IArticlesSortScheme } from '../types/articlesSortScheme';
+import { IArticleSortField } from '../types/articlesSort';
 
 
 const initialState: IArticlesSortScheme = {

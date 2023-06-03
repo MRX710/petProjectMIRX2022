@@ -1,11 +1,11 @@
 import { StateScheme } from "app/providers/StoreProvider";
-import { IArticle } from "entities/Article";
-import { ArticleBlockEnum, ArticleEnum } from "entities/Article/model/types/article";
+import { IArticle, ArticleBlockEnum, ArticleEnum } from "../types/article";
+
 import {
     getArticleDetailsData,
     getArticleDetailsError,
     getArticleDetailsIsLoading,
-} from "entities/Article/model/selectors/articleDetails";
+} from "./articleDetails";
 
 const data: IArticle = {
     id: '1',

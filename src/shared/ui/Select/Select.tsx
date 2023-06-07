@@ -9,6 +9,7 @@ export interface ISelectOption<T extends string> {
    content: string
 }
 
+// T extends string сделано, чтобы при прокидывании пропсов снаружи, например onChange, не делать снаружи as type
 interface ISelectProps<T extends string> {
    className?: string
    label?: string
@@ -28,20 +29,15 @@ export const Select = typedMemo(<T extends string>(props: ISelectProps<T>) => {
         readonly,
     } = props;
 
-    const optionsList = useMemo(() => {
-        if (checkArrayToMap(options)) {
-            return (options?.map((item) => (
-                <option
-                    className={cls.Select__option}
-                    value={item?.value}
-                    key={item?.value}
-                >
-                    {item?.content ?? ''}
-                </option>
-            )));
-        }
-        return [];
-    }, [options]);
+    const optionsList = useMemo(() => options?.map?.((item) => (
+        <option
+            className={cls.Select__option}
+            value={item?.value}
+            key={item?.value}
+        >
+            {item?.content ?? ''}
+        </option>
+    )), [options]);
 
     const onChangeHandler = (e: ChangeEvent<HTMLSelectElement>) => {
         onChange?.(e.target.value as T);

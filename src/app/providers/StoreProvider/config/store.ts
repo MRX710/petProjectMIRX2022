@@ -10,6 +10,7 @@ import { To } from 'react-router-dom';
 import { CombinedState, Reducer } from 'redux';
 import { ThunkMiddleware } from 'redux-thunk';
 import { scrollRestoreReducer } from 'features/scrollRestore';
+import { rtkApi } from "shared/api/rtkApi";
 import { IThunkExtraArg, StateScheme } from './StateScheme';
 import { createReducerManager } from './reducerManager';
 
@@ -25,6 +26,7 @@ export function createReduxStore(
         counter: counterReducer,
         user: userReducer,
         scrollRestore: scrollRestoreReducer,
+        [rtkApi.reducerPath]: rtkApi.reducer,
     };
 
     const reducerManager = createReducerManager(rootReducers);
@@ -57,7 +59,7 @@ export function createReduxStore(
             thunk: {
                 extraArgument: extraArg,
             },
-        }).prepend(listenerMiddleware.middleware),
+        }).prepend(listenerMiddleware.middleware).concat(rtkApi.middleware),
     });
 
     // @ts-ignore

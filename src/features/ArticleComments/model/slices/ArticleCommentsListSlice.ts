@@ -1,15 +1,11 @@
-import {
-    createEntityAdapter,
-    createSlice, PayloadAction,
-} from '@reduxjs/toolkit';
+import { createEntityAdapter, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { IComment } from "entities/Comment";
 import { StateScheme } from "app/providers/StoreProvider";
-import {
-    fetchCommentsByArticleId,
-} from "../services/fetchCommentsByArticleId/fetchCommentsByArticleId";
-import { IArticleDetailsCommentsScheme } from "../types/ArticleDetailsCommentsScheme";
+import { IArticleCommentsListScheme } from '../types/ArticleCommentsListScheme';
+import { fetchCommentsByArticleId } from '../services/fetchCommentsByArticleId/fetchCommentsByArticleId';
 
-const initialState: IArticleDetailsCommentsScheme = {
+
+const initialState: IArticleCommentsListScheme = {
     isLoading: false,
     error: undefined,
     ids: [],
@@ -20,13 +16,13 @@ const commentsAdapter = createEntityAdapter<IComment>({
     selectId: (comment) => comment.id,
 });
 
-export const getArticleComments = commentsAdapter.getSelectors<StateScheme>(
-    (state) => state?.articleDetailsComments || commentsAdapter.getInitialState(),
+export const getArticleCommentsList = commentsAdapter.getSelectors<StateScheme>(
+    (state) => state?.ArticleCommentsList || commentsAdapter.getInitialState(),
 );
 
-const ArticleDetailsCommentsSlice = createSlice({
-    name: 'ArticleDetailsCommentsSlice',
-    initialState: commentsAdapter.getInitialState<IArticleDetailsCommentsScheme>(initialState),
+export const ArticleCommentsListSlice = createSlice({
+    name: 'ArticleCommentsList',
+    initialState: commentsAdapter.getInitialState<IArticleCommentsListScheme>(initialState),
     reducers: {},
     extraReducers: (builder) => {
         builder
@@ -45,5 +41,5 @@ const ArticleDetailsCommentsSlice = createSlice({
     },
 });
 
-export const { actions: ArticleDetailsCommentsActions } = ArticleDetailsCommentsSlice;
-export const { reducer: ArticleDetailsCommentsReducer } = ArticleDetailsCommentsSlice;
+export const { actions: ArticleCommentsListActions } = ArticleCommentsListSlice;
+export const { reducer: ArticleCommentsListReducer } = ArticleCommentsListSlice;

@@ -1,18 +1,18 @@
 import { FC, ReactNode, useEffect } from 'react';
 import { useDispatch, useStore } from 'react-redux';
-import { IReduxStoreWithManager } from 'app/providers/StoreProvider';
+import { IReduxStoreWithManager, StateScheme } from 'app/providers/StoreProvider';
 import { StateSchemeKey } from 'app/providers/StoreProvider/config/StateScheme';
 import { Reducer } from '@reduxjs/toolkit';
 
 
 export type ReducersList = {
-   [name in StateSchemeKey]?: Reducer // объект ключ значение
+    [name in StateSchemeKey]?: Reducer<NonNullable<StateScheme[name]>> // объект ключ значение
 }
 
 export interface IDynamicModuleLoader {
-   children: ReactNode
-   reducers: ReducersList
-   removeReducerAfterUnmount?: boolean
+    children: ReactNode
+    reducers: ReducersList
+    removeReducerAfterUnmount?: boolean
 }
 
 export const DynamicModuleLoader: FC<IDynamicModuleLoader> = (props) => {
@@ -45,7 +45,7 @@ export const DynamicModuleLoader: FC<IDynamicModuleLoader> = (props) => {
             }
         };
         // eslint-disable-next-line
-   }, []);
+    }, []);
 
     return (
         <>

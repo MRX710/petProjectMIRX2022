@@ -4,18 +4,19 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import { Text } from 'shared/ui/Text/Text';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { useSelector } from 'react-redux';
-import {
-    getProfileData, getProfileReadonly, profileActions, updateProfileData,
-} from 'entities/Profile';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { getUserAuthData } from "entities/User";
-import cls from './ProfilePageHeader.module.scss';
+import { profileActions } from '../../model/slice/profileSlice';
+import cls from './EditableProfileCardHeader.module.scss';
+import { updateProfileData } from '../../model/service/updateProfileData/updateProfileData';
+import { getProfileReadonly } from '../../model/selectors/getProfileReadonly/getProfileReadonly';
+import { getProfileData } from '../../model/selectors/getProfileData/getProfileData';
 
 interface IProfilePageHeaderProps {
-   className?: string
+    className?: string
 }
 
-export const ProfilePageHeader: FC<IProfilePageHeaderProps> = (props) => {
+export const EditableProfileCardHeader: FC<IProfilePageHeaderProps> = (props) => {
     const { className } = props;
 
     const { t } = useTranslation('profile');
@@ -24,7 +25,6 @@ export const ProfilePageHeader: FC<IProfilePageHeaderProps> = (props) => {
     const canEdit = authData?.id === profileData?.id;
     const readonly = useSelector(getProfileReadonly);
     const dispatch = useAppDispatch();
-    
 
     const onEdit = useCallback(() => {
         dispatch(profileActions.setReadOnly(false));

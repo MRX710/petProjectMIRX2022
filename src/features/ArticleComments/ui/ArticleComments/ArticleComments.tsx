@@ -22,7 +22,6 @@ import { fetchCommentsByArticleId } from '../../model/services/fetchCommentsByAr
 import { addCommentForArticle } from '../../model/services/addCommentForArticle/addCommentForArticle';
 
 export interface IArticleCommentsProps {
-    className?: string;
     id: string
 }
 
@@ -31,9 +30,9 @@ const reducers: ReducersList = {
     ArticleCommentForm: ArticleCommentFormReducer,
 };
 
+// эту компоненту можно использовать не как фичу, а вынести в дальнейшем в виджеты
 const ArticleComments = memo((props: IArticleCommentsProps) => {
     const {
-        className,
         id,
     } = props;
     const { t } = useTranslation();
@@ -60,10 +59,7 @@ const ArticleComments = memo((props: IArticleCommentsProps) => {
     }, [dispatch]);
 
     return (
-        <DynamicModuleLoader
-            reducers={reducers}
-            removeReducerAfterUnmount
-        >
+        <DynamicModuleLoader reducers={reducers}>
             <Text
                 className={cls.commentTitle}
                 title={t('Комментарии')}

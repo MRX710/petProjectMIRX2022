@@ -9,23 +9,22 @@ import { Currency } from "entities/Currency/model/types/currency";
 import { CurrencySelect } from "entities/Currency";
 import { Country, CountrySelect } from "entities/Country";
 import { IProfile } from '../../model/types/profileTypes';
-
 import cls from './ProfileCard.module.scss';
 
 interface IProfileCardProps {
-   className?: string
-   data?: IProfile
-   error?: string
-   readOnly?: boolean
-   isLoading?: boolean
-   onChangeFirstname?: onChangeInputFuncType
-   onChangeLastname?: onChangeInputFuncType
-   onChangeAge?: onChangeInputFuncType
-   onChangeCity?: onChangeInputFuncType
-   onChangeUsername?: onChangeInputFuncType
-   onChangeAvatar?: onChangeInputFuncType
-   onChangeCurrency?: (currency: Currency) => void
-   onChangeCountry?: (country: Country) => void
+    className?: string
+    data?: IProfile
+    error?: string
+    readOnly?: boolean
+    isLoading?: boolean
+    onChangeFirstname?: onChangeInputFuncType
+    onChangeLastname?: onChangeInputFuncType
+    onChangeAge?: onChangeInputFuncType
+    onChangeCity?: onChangeInputFuncType
+    onChangeUsername?: onChangeInputFuncType
+    onChangeAvatar?: onChangeInputFuncType
+    onChangeCurrency?: (currency: Currency) => void
+    onChangeCountry?: (country: Country) => void
 }
 
 export const ProfileCard: FC<IProfileCardProps> = (props) => {

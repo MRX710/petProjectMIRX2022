@@ -3,7 +3,6 @@ import { IUserScheme } from 'entities/User';
 import { ILoginScheme } from 'features/AuthByUsername';
 import { EnhancedStore, Reducer, ReducersMapObject } from '@reduxjs/toolkit';
 import { CombinedState } from 'redux';
-import { IProfileScheme } from 'entities/Profile';
 import { AxiosInstance } from 'axios';
 import { To } from 'react-router-dom';
 import { NavigateOptions } from 'react-router';
@@ -14,6 +13,7 @@ import { IArticlesSortScheme } from "features/articlesSort";
 import { rtkApi } from "shared/api/rtkApi";
 import { IArticleCommentsListScheme } from 'features/ArticleComments';
 import { IArticleCommentFormScheme } from "features/ArticleComments/model/types/ArticleCommentFormScheme";
+import { IProfileScheme } from 'features/EditableProfileCard';
 
 export interface StateScheme {
     counter: CounterScheme,

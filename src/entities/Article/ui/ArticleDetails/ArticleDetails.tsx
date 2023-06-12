@@ -11,6 +11,7 @@ import EyeIsOpenedIcon from 'shared/assets/icons/eyeIsOpened.svg';
 import CalendarIcon from 'shared/assets/icons/calendar.svg';
 import { Icon } from "shared/ui/Icon/Icon";
 import { checkArrayToMap } from "shared/lib/checkout/checkout";
+import { rtkApi } from "shared/api/rtkApi";
 import {
     getArticleDetailsData,
     getArticleDetailsError,
@@ -25,13 +26,27 @@ import { ArticleImageBlockComponent } from "../ArticleImageBlockComponent/Articl
 import { ArticleTextBlockComponent } from "../ArticleTextBlockComponent/ArticleTextBlockComponent";
 
 interface IArticleDetailsProps {
-   className?: string
-   id: string
+    className?: string
+    id: string
 }
 
 const reducers: ReducersList = {
     articleDetails: articleDetailsReducer,
 };
+
+// const articleDetailsApi = rtkApi.injectEndpoints({
+//     endpoints: (build) => ({
+//         fetchArticleById: build.query({
+//             query: (id: string) => ({
+//                 url: `/articles/${id}`,
+//                 // params: {
+//                 //     _limit: limit,
+//                 // },
+//             }),
+//         }),
+//     }),
+// });
+
 
 export const ArticleDetails = memo((props: IArticleDetailsProps) => {
     const {

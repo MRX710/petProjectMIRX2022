@@ -1,4 +1,4 @@
-export {
+export type {
     IArticlesPageScheme,
 } from "./model/types/articlesPageScheme";
 

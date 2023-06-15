@@ -10,7 +10,7 @@ import { Input } from 'shared/ui/Input/Input';
 import { SortOrder } from "shared/types/baseFilters";
 import { useDebounce } from "shared/lib/hooks/useDebounce/useDebounce";
 import { ITabItem, Tabs } from "shared/ui/Tabs/Tabs";
-import { ArticleEnum } from "entities/Article/model/types/article";
+import { ArticleEnum } from "entities/Article/model/consts/consts";
 import { IArticleSortField } from "../model/types/articlesSort";
 import { ArticlesSortSelector } from "./ArticlesSortSelector/ArticlesSortSelector";
 import { IArticlesSortScheme } from "../model/types/articlesSortScheme";
@@ -23,10 +23,10 @@ import cls from './ArticlesSort.module.scss';
 import { articlesSortActions } from '../model/slice/articlesSortSlice';
 
 interface IArticlesSortProps {
-   className?: string
-   view: IArticleView
-   onViewClick?: (view: IArticleView) => void
-   onRequest?: (filter?: DeepPartial<IArticlesSortScheme>) => void
+    className?: string
+    view: IArticleView
+    onViewClick?: (view: IArticleView) => void
+    onRequest?: (filter?: DeepPartial<IArticlesSortScheme>) => void
 }
 
 export const ArticlesSort = memo((props: IArticlesSortProps) => {

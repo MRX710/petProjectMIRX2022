@@ -1,4 +1,4 @@
-export {
+export type {
     ILoginScheme,
 } from './model/types/loginScheme';
 

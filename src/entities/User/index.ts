@@ -7,7 +7,7 @@ export {
     userReducer,
 } from './model/slice/userSlice';
 
-export {
+export type {
     IUser,
     IUserScheme,
 } from './model/types/user';

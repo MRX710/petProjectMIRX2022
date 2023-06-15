@@ -3,16 +3,17 @@ import { useTranslation } from 'react-i18next';
 import { checkArrayToMap } from 'shared/lib/checkout/checkout';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Text, TextSize } from "shared/ui/Text/Text";
+import { IArticleView } from "../../model/consts/consts";
 import { ArticleListItemSkeleton } from "../ArticleListItem/ArticleListItemSkeleton";
 import { ArticleListItem } from "../ArticleListItem/ArticleListItem";
-import { IArticle, IArticleView } from "../../model/types/article";
+import { IArticle } from "../../model/types/article";
 import cls from './ArticleList.module.scss';
 
 interface IArticleListProps {
-   className?: string
-   articles: IArticle[]
-   isLoading?: boolean
-   view?: IArticleView
+    className?: string
+    articles: IArticle[]
+    isLoading?: boolean
+    view?: IArticleView
 }
 
 const getSkeletons = (view: IArticleView) => new Array(view === IArticleView.TILE ? 9 : 3).fill(0)

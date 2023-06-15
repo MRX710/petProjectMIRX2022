@@ -2,7 +2,7 @@ export {
     ArticleCommentsAsync as ArticleComments,
 } from './ui/ArticleComments/ArticleComments.async';
 
-export {
+export type {
     IArticleCommentsListScheme,
 } from "./model/types/ArticleCommentsListScheme";
 

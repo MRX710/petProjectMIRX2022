@@ -1,4 +1,5 @@
-import { IProfile, ValidateProfileError } from "../../types/profileTypes";
+import { ValidateProfileError } from "../../consts/consts";
+import { IProfile } from "../../types/profileTypes";
 
 export const validateProfileData = (profile: IProfile): ValidateProfileError[] => {
     if (!profile) {

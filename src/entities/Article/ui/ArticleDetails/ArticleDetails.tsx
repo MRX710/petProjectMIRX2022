@@ -12,12 +12,13 @@ import CalendarIcon from 'shared/assets/icons/calendar.svg';
 import { Icon } from "shared/ui/Icon/Icon";
 import { checkArrayToMap } from "shared/lib/checkout/checkout";
 import { rtkApi } from "shared/api/rtkApi";
+import { ArticleBlockEnum } from "../../model/consts/consts";
 import {
     getArticleDetailsData,
     getArticleDetailsError,
     getArticleDetailsIsLoading,
 } from "../../model/selectors/articleDetails";
-import { ArticleBlockEnum, TArticleBlock } from "../../model/types/article";
+import { TArticleBlock } from "../../model/types/article";
 import { fetchArticleById } from "../../model/services/fetchArticleById/fetchArticleById";
 import { articleDetailsReducer } from '../../model/slice/articleDetailsSlice';
 import cls from './ArticleDetails.module.scss';

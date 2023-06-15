@@ -1,5 +1,6 @@
 import { TestAsyncThunk } from 'shared/lib/tests/TestAsyncThunk/TestAsyncThunk';
-import { ArticleBlockEnum, ArticleEnum, IArticle } from '../../types/article';
+import { ArticleBlockEnum, ArticleEnum } from "../../consts/consts";
+import { IArticle } from '../../types/article';
 import { fetchArticleById } from './fetchArticleById';
 
 const response: IArticle = {

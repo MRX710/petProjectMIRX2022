@@ -1,6 +1,7 @@
 import { Currency } from "entities/Currency";
 import { Country } from "entities/Country";
-import { IProfileScheme, ValidateProfileError } from "../types/profileTypes";
+import { ValidateProfileError } from "../../model/consts/consts";
+import { IProfileScheme } from "../types/profileTypes";
 import { profileActions, profileReducer } from "./profileSlice";
 import { updateProfileData } from "../service/updateProfileData/updateProfileData";
 
@@ -18,8 +19,8 @@ describe('profileSlice', () => {
     test('test readonly true', () => {
         const state: DeepPartial<IProfileScheme> = { readonly: false };
         expect(profileReducer(
-          state as IProfileScheme,
-          profileActions.setReadOnly(true),
+            state as IProfileScheme,
+            profileActions.setReadOnly(true),
         )).toEqual({ readonly: true });
     });
 
@@ -29,8 +30,8 @@ describe('profileSlice', () => {
             validateErrors: [ValidateProfileError.SERVER_ERROR],
         };
         expect(profileReducer(
-          state as IProfileScheme,
-          updateProfileData.pending,
+            state as IProfileScheme,
+            updateProfileData.pending,
         )).toEqual({
             isLoading: true,
             validateErrors: undefined,
@@ -42,8 +43,8 @@ describe('profileSlice', () => {
             isLoading: true,
         };
         expect(profileReducer(
-          state as IProfileScheme,
-          updateProfileData.fulfilled(data, ''),
+            state as IProfileScheme,
+            updateProfileData.fulfilled(data, ''),
         )).toEqual({
             isLoading: false,
             validateErrors: undefined,

@@ -10,16 +10,18 @@ import { Avatar } from 'shared/ui/Avatar/Avatar';
 import { Button } from 'shared/ui/Button/Button';
 import { useNavigate } from "react-router-dom";
 import { RoutePath } from "shared/config/routeConfig/routeConfig";
+import { ArticleBlockEnum, IArticleView } from "../../model/consts/consts";
+
 import {
-    ArticleBlockEnum, IArticle, IArticleTextBlock, IArticleView, 
+    IArticle, IArticleTextBlock,
 } from "../../model/types/article";
 import cls from './ArticleListItem.module.scss';
 import { ArticleTextBlockComponent } from '../ArticleTextBlockComponent/ArticleTextBlockComponent';
 
 interface IArticleListItemProps {
-   className?: string
-   article: IArticle
-   view: IArticleView
+    className?: string
+    article: IArticle
+    view: IArticleView
 }
 
 export const ArticleListItem = memo((props: IArticleListItemProps) => {

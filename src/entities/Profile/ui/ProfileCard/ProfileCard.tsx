@@ -5,7 +5,7 @@ import { Text, TextAlign, TextTheme } from 'shared/ui/Text/Text';
 import { Input, onChangeInputFuncType } from 'shared/ui/Input/Input';
 import { Loader } from 'shared/ui/Loader/Loader';
 import { Avatar } from "shared/ui/Avatar/Avatar";
-import { Currency } from "entities/Currency/model/types/currency";
+import { Currency } from "entities/Currency/model/consts/currency";
 import { CurrencySelect } from "entities/Currency";
 import { Country, CountrySelect } from "entities/Country";
 import { IProfile } from '../../model/types/profileTypes';

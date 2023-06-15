@@ -6,14 +6,15 @@ export {
     ArticleDetails,
 } from "./ui/ArticleDetails/ArticleDetails";
 
-export {
-    IArticle, IArticleView,
+export type{
+    IArticle,
 } from "./model/types/article";
 
-export {
+export type{
     IArticleDetailsScheme,
 } from "./model/types/articleDetailsScheme";
 
 export {
     getArticleDetailsData,
 } from "./model/selectors/articleDetails";
+export { IArticleView } from "entities/Article/model/consts/consts";

@@ -9,7 +9,7 @@ import {
 } from "features/articlesSort/model/selectors/getArticlesSort";
 import { IArticlesSortScheme } from "features/articlesSort";
 import { addQueryParams } from "shared/lib/url/addQueryParams/addQueryParams";
-import { ArticleEnum } from "entities/Article/model/types/article";
+import { ArticleEnum } from "entities/Article/model/consts/consts";
 import { articlesPageActions } from "../../slice/articlesPageSlice";
 import {
     getArticlesHasMore,
@@ -19,14 +19,14 @@ import {
 
 
 interface IFetchArticlesListProps {
-   // page можно задать извне, но если не задан берется мз стейта
-   page?: number
-   // флаг менять ли номер страницы
-   newPage?: boolean
-   // сброс раннее полученных данных
-   resetPreviousData?: boolean
-   // измененное фильтруемое поле
-   filterField?: DeepPartial<IArticlesSortScheme>
+    // page можно задать извне, но если не задан берется мз стейта
+    page?: number
+    // флаг менять ли номер страницы
+    newPage?: boolean
+    // сброс раннее полученных данных
+    resetPreviousData?: boolean
+    // измененное фильтруемое поле
+    filterField?: DeepPartial<IArticlesSortScheme>
 }
 
 export const fetchArticlesList = createAsyncThunk<IArticle[], IFetchArticlesListProps, IThunkConfig<string>>(

@@ -1,8 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { checkArrayToMap } from "shared/lib/checkout/checkout";
+import { ValidateProfileError } from "../../model/consts/consts";
 import { fetchProfileData } from '../service/fetchProfileData/fetchProfileData';
 import { updateProfileData } from "../service/updateProfileData/updateProfileData";
-import { IProfile, IProfileScheme, ValidateProfileError } from '../types/profileTypes';
+import { IProfile, IProfileScheme } from '../types/profileTypes';
 
 const initialState: IProfileScheme = {
     readonly: true,
@@ -38,7 +39,7 @@ export const profileSlice = createSlice({
                 ];
             }
             else if (state?.validateErrors && checkArrayToMap(state?.validateErrors)) {
-            // pass
+                // pass
             }
             else {
                 state.validateErrors = [action?.payload];

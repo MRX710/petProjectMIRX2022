@@ -11,7 +11,7 @@ import { useInitialEffect } from "shared/lib/hooks/useInitialEffect/useInitialEf
 import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch";
 import { ProfileCard } from 'entities/Profile';
 import { DynamicModuleLoader, ReducersList } from "shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";
-import { ValidateProfileError } from "../../model/types/profileTypes";
+import { ValidateProfileError } from "../../model/consts/consts";
 import { getProfileForm } from '../../model/selectors/getProfileForm/getProfileForm';
 import { getProfileError, getProfileLoading } from '../../model/selectors/getProfile/getProfile';
 import { getProfileReadonly } from '../../model/selectors/getProfileReadonly/getProfileReadonly';

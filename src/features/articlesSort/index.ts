@@ -3,6 +3,6 @@ export {
     articlesSortActions,
 } from "./model/slice/articlesSortSlice";
 
-export {
+export type {
     IArticlesSortScheme,
 } from "./model/types/articlesSortScheme";

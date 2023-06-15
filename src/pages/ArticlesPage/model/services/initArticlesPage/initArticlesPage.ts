@@ -3,7 +3,7 @@ import { IThunkConfig } from 'app/providers/StoreProvider';
 import { articlesSortActions } from "features/articlesSort";
 import { SortOrder } from "shared/types/baseFilters";
 import { IArticleSortField } from "features/articlesSort/model/types/articlesSort";
-import { ArticleEnum } from "entities/Article/model/types/article";
+import { ArticleEnum } from "entities/Article/model/consts/consts";
 import { getArticlesIsInited } from "../../selectors/getArticlesPageState";
 import { articlesPageActions } from "../../slice/articlesPageSlice";
 import { fetchArticlesList } from "../fetchArticlesList/fetchArticlesList";

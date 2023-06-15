@@ -1,5 +1,6 @@
 import { StateScheme } from "app/providers/StoreProvider";
-import { IArticle, ArticleBlockEnum, ArticleEnum } from "../types/article";
+import { ArticleBlockEnum, ArticleEnum } from "../../model/consts/consts";
+import { IArticle } from "../types/article";
 
 import {
     getArticleDetailsData,

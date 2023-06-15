@@ -7,7 +7,7 @@ export {
     getScrollRestoreByPath,
 } from "./model/selectors/getScrollRestore";
 
-export {
+export type {
     IScrollRestoreScheme,
 } from "./model/types/scrollRestoreScheme";
 

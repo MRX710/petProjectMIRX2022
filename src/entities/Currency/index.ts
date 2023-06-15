@@ -1,6 +1,6 @@
 export {
     Currency,
-} from "entities/Currency/model/types/currency";
+} from "entities/Currency/model/consts/currency";
 
 export {
     CurrencySelect,

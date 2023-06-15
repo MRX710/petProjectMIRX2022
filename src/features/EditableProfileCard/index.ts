@@ -3,7 +3,7 @@ export { EditableProfileCard } from './ui/EditableProfileCard/EditableProfileCar
 
 export { profileReducer } from './model/slice/profileSlice';
 export { profileActions } from './model/slice/profileSlice';
-export { IProfileScheme } from './model/types/profileTypes';
+export type { IProfileScheme } from './model/types/profileTypes';
 
 export { getProfileData } from './model/selectors/getProfileData/getProfileData';
 export { updateProfileData } from './model/service/updateProfileData/updateProfileData';

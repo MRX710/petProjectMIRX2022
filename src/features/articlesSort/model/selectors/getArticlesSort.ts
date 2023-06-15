@@ -1,5 +1,5 @@
 import { StateScheme } from "app/providers/StoreProvider";
-import { ArticleEnum } from "entities/Article/model/types/article";
+import { ArticleEnum } from "entities/Article/model/consts/consts";
 import { IArticleSortField } from "../../model/types/articlesSort";
 
 export const getArticlesFiltersOrder = (state: StateScheme) => state.articlesSort?.order ?? "asc";

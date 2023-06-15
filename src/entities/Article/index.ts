@@ -17,4 +17,6 @@ export type{
 export {
     getArticleDetailsData,
 } from "./model/selectors/articleDetails";
-export { IArticleView } from "entities/Article/model/consts/consts";
+export {
+    IArticleView,
+} from "entities/Article/model/consts/consts";

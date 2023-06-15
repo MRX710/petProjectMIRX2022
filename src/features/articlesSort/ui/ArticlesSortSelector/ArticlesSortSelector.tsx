@@ -7,11 +7,11 @@ import { IArticleSortField } from "../../model/types/articlesSort";
 import cls from './ArticlesSortSelector.module.scss';
 
 interface IArticlesSortSelectorProps {
-   className?: string
-   order: SortOrder
-   sort: IArticleSortField
-   onChangeOrder: (newOrder: SortOrder) => void
-   onChangeSort: (newSort: IArticleSortField) => void
+    className?: string
+    order: SortOrder
+    sort: IArticleSortField
+    onChangeOrder: (newOrder: SortOrder) => void
+    onChangeSort: (newSort: IArticleSortField) => void
 }
 
 export const ArticlesSortSelector = memo((props: IArticlesSortSelectorProps) => {
@@ -54,14 +54,14 @@ export const ArticlesSortSelector = memo((props: IArticlesSortSelectorProps) => 
     return (
         <div className={classNames(cls.ArticlesSortSelector, {}, [className])}>
             <Select
-              <IArticleSortField>
+                <IArticleSortField>
                 value={sort}
                 onChange={onChangeSort}
                 options={sortFieldOptions}
                 label={t('Сортировать ПО ')}
             />
             <Select
-              <SortOrder>
+                <SortOrder>
                 className={cls.order}
                 value={order}
                 onChange={onChangeOrder}

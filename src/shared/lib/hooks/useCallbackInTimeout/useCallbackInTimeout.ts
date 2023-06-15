@@ -17,7 +17,7 @@ export function useCallbackInTimeout(delay: number) {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [timeoutRef!.current]);
 
-    return useCallback((callback) => {
+    return useCallback((callback: Function) => {
         timeoutRef.current = setTimeout(() => {
             callback?.();
         }, delay);

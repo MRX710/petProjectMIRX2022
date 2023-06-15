@@ -4,12 +4,12 @@ import { Button } from 'shared/ui/Button/Button';
 import { useTranslation } from 'react-i18next';
 
 interface BugButtonProps {
-   className?: string
+    className?: string
 }
 
 // компонент для тестирования
 export const BugButton: FC<BugButtonProps> = (props) => {
-    const { className, children, ...otherProps } = props;
+    const { className, ...otherProps } = props;
     const { t } = useTranslation();
 
     const [error, setError] = useState<boolean>(false);

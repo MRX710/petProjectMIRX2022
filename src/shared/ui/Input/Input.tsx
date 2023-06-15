@@ -9,13 +9,13 @@ type HTMLInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'onC
 export type onChangeInputFuncType = (value: string | null, emptyString: boolean) => any | void
 
 interface InputProps extends HTMLInputProps {
-   className?: string;
-   value?: string | number | null;
-   onChange?: onChangeInputFuncType;
-   autofocus?: boolean;
-   readOnly?: boolean
-   onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void
-   onRequest?: () => void
+    className?: string;
+    value?: string | number | null;
+    onChange?: onChangeInputFuncType;
+    autofocus?: boolean;
+    readOnly?: boolean
+    onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void
+    onRequest?: () => void
 }
 
 export const Input = memo((props: InputProps) => {
@@ -63,7 +63,7 @@ export const Input = memo((props: InputProps) => {
         setCaretPosition(e?.target?.selectionStart || 0);
     };
 
-    const onKeyDown = useCallback((e) => {
+    const onKeyDown = useCallback((e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.keyCode === 13) {
             onRequest?.();
         }

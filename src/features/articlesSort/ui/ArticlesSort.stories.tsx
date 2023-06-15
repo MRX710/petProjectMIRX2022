@@ -1,5 +1,6 @@
 import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { StoreDecorator } from "shared/config/storybook/StoreDecorator/StoreDecorator";
 import { ArticlesSort } from './ArticlesSort';
 
 export default {
@@ -14,3 +15,6 @@ const Template: ComponentStory<typeof ArticlesSort> = (args) => <ArticlesSort {.
 
 export const Normal = Template.bind({});
 Normal.args = {};
+Normal.decorators = [
+    StoreDecorator({}),
+];

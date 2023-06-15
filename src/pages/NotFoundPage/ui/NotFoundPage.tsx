@@ -6,11 +6,11 @@ import { Page } from "widgets/Page/Page";
 import cls from './NotFoundPage.module.scss';
 
 interface NotFoundPageProps {
-   className?: string
+    className?: string
 }
 
 export const NotFoundPage: FC<NotFoundPageProps> = (props) => {
-    const { className, children, ...otherProps } = props;
+    const { className, ...otherProps } = props;
 
     const { t } = useTranslation();
 

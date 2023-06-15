@@ -25,7 +25,7 @@ const MainPage = () => {
     ];
 
     const [selectedItem, setSelectedItem] = useState();
-    const onChangeListBox = useCallback((val) => {
+    const onChangeListBox = useCallback((val: any) => {
         setSelectedItem(val);
     }, []);
 

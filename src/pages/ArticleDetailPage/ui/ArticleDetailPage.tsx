@@ -1,4 +1,4 @@
-import { memo, useCallback } from 'react';
+import { memo, Suspense, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { ArticleDetails } from "entities/Article";
@@ -7,6 +7,7 @@ import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { RoutePath } from "shared/config/routeConfig/routeConfig";
 import { Page } from "widgets/Page/Page";
 import { ArticleComments } from "features/ArticleComments";
+import { Loader } from "shared/ui/Loader/Loader";
 import cls from './ArticleDetailPage.module.scss';
 
 
@@ -15,7 +16,7 @@ const ArticleDetailPage = () => {
 
     const { id } = useParams<{ id: string }>();
     const navigate = useNavigate();
-    
+
     const onBackToList = useCallback(() => {
         navigate(RoutePath.articles);
     }, [navigate]);

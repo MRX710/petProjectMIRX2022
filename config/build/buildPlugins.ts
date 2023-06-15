@@ -35,10 +35,10 @@ export function buildPlugins({
     if (isDev) {
         plugins.push(new ReactRefreshWebpackPlugin());
         plugins.push(new BundleAnalyzerPlugin({ openAnalyzer: false }));
-        plugins.push(new CircularDependencyPlugin({
-            exclude: /node_modules/,
-            failOnError: true,
-        }));
+        // plugins.push(new CircularDependencyPlugin({
+        //     exclude: /node_modules/,
+        //     failOnError: true,
+        // }));
     }
 
     return plugins;

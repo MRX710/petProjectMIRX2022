@@ -2,14 +2,13 @@ import { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Select } from "shared/ui/Select/Select";
-// eslint-disable-next-line mirx-eslint-plugin/path-checker
-import { Country } from "entities/Country";
+import { Country } from "../../model/consts/Country";
 
 interface ICountrySelectProps {
-   className?: string
-   value?: Country
-   onChange?: (value: Country) => void
-   readonly?: boolean
+    className?: string
+    value?: Country
+    onChange?: (value: Country) => void
+    readonly?: boolean
 }
 
 const CountryOptions = [

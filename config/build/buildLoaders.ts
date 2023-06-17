@@ -15,26 +15,27 @@ export function buildLoaders(options: BuildOptions): webpack.RuleSetRule[] {
         use: ['@svgr/webpack'],
     };
 
-    const babelLoader = buildBabelLoader(options);
+    const codeBabelLoader = buildBabelLoader({ ...options, isTsx: false });
+    const tsxCodeBabelLoader = buildBabelLoader({ ...options, isTsx: true });
 
     const cssLoader = buildCssLoader(options);
 
     // Если не используем тайпскрипт - нужен babel-loader
-    const typescriptLoader = {
-        test: /\.tsx?$/,
-        exclude: /node_modules/,
-
-        // когда используешь массив в use = [{loader: 'ts-loader', и т.д }] - отваливается горячая перезагрузка
-        // (можно проверить изменением css в модалке (в коде) и изменение значений инпутов в браузере, к примеру)
-        use: {
-            loader: 'ts-loader',
-            options: {
-                getCustomTransformers: () => ({
-                    before: [isDev && ReactRefreshTypeScript()].filter(Boolean),
-                }),
-            },
-        },
-    };
+    // const typescriptLoader = {
+    //     test: /\.tsx?$/,
+    //     exclude: /node_modules/,
+    //
+    //     // когда используешь массив в use = [{loader: 'ts-loader', и т.д }] - отваливается горячая перезагрузка
+    //     // (можно проверить изменением css в модалке (в коде) и изменение значений инпутов в браузере, к примеру)
+    //     use: {
+    //         loader: 'ts-loader',
+    //         options: {
+    //             getCustomTransformers: () => ({
+    //                 before: [isDev && ReactRefreshTypeScript()].filter(Boolean),
+    //             }),
+    //         },
+    //     },
+    // };
 
     const fileLoader = {
         test: /\.(png|jpe?g|webp|gif|woff2|woff)$/i,
@@ -48,8 +49,8 @@ export function buildLoaders(options: BuildOptions): webpack.RuleSetRule[] {
     return [
         fileLoader,
         svgLoader,
-        babelLoader,
-        typescriptLoader,
+        codeBabelLoader,
+        tsxCodeBabelLoader,
         cssLoader,
     ];
 }

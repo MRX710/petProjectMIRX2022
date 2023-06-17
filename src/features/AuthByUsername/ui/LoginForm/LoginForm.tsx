@@ -20,9 +20,9 @@ import { loginActions, loginReducer } from '../../model/slice/loginSlice';
 import cls from './LoginForm.module.scss';
 
 export interface ILoginFormProps {
-   className?: string
-   isOpen: boolean
-   onSuccess: () => void
+    className?: string
+    isOpen: boolean
+    onSuccess: () => void
 }
 
 const initialReducers: ReducersList = {

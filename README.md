@@ -39,7 +39,3 @@ npm run test:unit
 
 
 
-```bash
-# Пример команды для установки
-# Например:
-git clone https://github.com/yourusername/your-project.git
